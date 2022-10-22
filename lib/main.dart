@@ -62,7 +62,8 @@ class MyHomePage extends StatefulWidget {
         ),
       ),
     );
-}
+  }
+
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
@@ -82,11 +83,14 @@ class _MyHomePageState extends State<MyHomePage> {
       body: SlidingUpPanel(
         maxHeight: panelHeightOpen,
         minHeight: panelHeightClosed,
-        body: BackgroundColorPage(), // will be background
+        body: const BackgroundColorPage(), // will be background
         panelBuilder: (controller) => PanelWidget(
           controller: controller,
         ),
-        borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
+        borderRadius: const BorderRadius.vertical(top: Radius.circular(30)),
+        boxShadow: const [
+          BoxShadow(blurRadius: 8.0, color: Color.fromRGBO(0, 0, 0, 0.5))
+        ],
       ),
     );
   }
