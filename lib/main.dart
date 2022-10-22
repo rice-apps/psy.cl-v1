@@ -86,6 +86,7 @@ class _MyHomePageState extends State<MyHomePage> {
         panelBuilder: (controller) => PanelWidget(
           controller: controller,
         ),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
       ),
     );
   }
