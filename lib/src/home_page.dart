@@ -1,26 +1,24 @@
-import 'dart:html';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
-import 'floating-panel/background.dart';
+import './widget/panel.dart';
+import './widget/background.dart';
 
-class HomePage extends StatefulWidget {
+class MyHomePage extends StatefulWidget {
   @override
-  _HomePageState createState() => _HomePageState();
+  _MyHomePageState createState() => _MyHomePageState();
 }
 
-class HomePageState extends State<HomePage> {
+class MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SlidingUpPanel(
-        body: , // will be background
+        body: BackgroundColorPage(), // will be background
         panelBuilder: (controller) => PanelWidget(
           controller: controller,
         ),
       ),
-    )
+    );
   }
 }
