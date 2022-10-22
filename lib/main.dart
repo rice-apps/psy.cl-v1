@@ -69,6 +69,9 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
+    final panelHeightOpen = MediaQuery.of(context).size.height * 0.6;
+    final panelHeightClosed = MediaQuery.of(context).size.height * 0.1;
+
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
@@ -77,6 +80,8 @@ class _MyHomePageState extends State<MyHomePage> {
     // than having to individually change instances of widgets.
     return Scaffold(
       body: SlidingUpPanel(
+        maxHeight: panelHeightOpen,
+        minHeight: panelHeightClosed,
         body: BackgroundColorPage(), // will be background
         panelBuilder: (controller) => PanelWidget(
           controller: controller,
