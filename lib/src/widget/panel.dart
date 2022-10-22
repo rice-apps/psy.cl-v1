@@ -27,8 +27,8 @@ class PanelWidget extends StatelessWidget {
           children: <Widget>[
             // ignore: prefer_const_constructors
             Text(
-              'donuts yay'
-              style: const TextStyle(fontWeight: FontWeight.w600),
+              'donuts yay',
+              style: TextStyle(fontWeight: FontWeight.w600),
             ),
           ],
         ),
