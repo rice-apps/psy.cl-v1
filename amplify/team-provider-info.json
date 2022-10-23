@@ -1,0 +1,26 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-psycl-dev-233612-authRole",
+      "UnauthRoleArn": "arn:aws:iam::059784805544:role/amplify-psycl-dev-233612-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::059784805544:role/amplify-psycl-dev-233612-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-psycl-dev-233612-deployment",
+      "UnauthRoleName": "amplify-psycl-dev-233612-unauthRole",
+      "StackName": "amplify-psycl-dev-233612",
+      "StackId": "arn:aws:cloudformation:us-east-2:059784805544:stack/amplify-psycl-dev-233612/39fc79a0-528c-11ed-925a-063d4f3399cc",
+      "AmplifyAppId": "d2d99j2fr95tvj"
+    },
+    "categories": {
+      "api": {
+        "psycl": {}
+      },
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d2d99j2fr95tvj",
+          "type": "manual"
+        }
+      }
+    }
+  }
+}
