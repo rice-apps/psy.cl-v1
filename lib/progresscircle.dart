@@ -11,7 +11,7 @@ class ProgressCircle extends StatefulWidget {
 }
 
 class _ProgressCircleState extends State<ProgressCircle> {
-  int _count = 0;
+  int _count = 14;
 
   void _incrementCounter() {
     setState(() {
@@ -27,16 +27,22 @@ class _ProgressCircleState extends State<ProgressCircle> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.red.shade300,
       body: Center(
         child: CircularPercentIndicator(
-          radius: 200,
+          radius: 300,
           lineWidth: 20,
+          animation: true,
+          animationDuration: 800,
           percent: (_count / 28),
-          progressColor: Colors.red,
-          backgroundColor: Colors.red.shade200,
+          progressColor: Colors.white,
+          backgroundColor: Colors.grey.shade300,
           circularStrokeCap: CircularStrokeCap.round,
-          center: Text('${28 - _count} days',
-              style: const TextStyle(fontSize: 25, color: Colors.red)),
+          center: Text(
+            '${28 - _count} days \n until period starts',
+            style: const TextStyle(fontSize: 25, color: Colors.white),
+            textAlign: TextAlign.center,
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
