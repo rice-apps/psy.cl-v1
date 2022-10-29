@@ -3,6 +3,7 @@ import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 import './src/widget/panel.dart';
 import './src/widget/background.dart';
+import './src/widget/sliding_background.dart';
 
 void main() {
   runApp(const MyApp());
@@ -42,13 +43,13 @@ class MyHomePage extends StatefulWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("SlidingUpPanelExample"),
+        title: const Text("SlidingUpPanelExample"),
       ),
       body: SlidingUpPanel(
-        panel: Center(
+        panel: const Center(
           child: Text("This is the sliding Widget"),
         ),
-        body: Center(
+        body: const Center(
           child: Text("This is the Widget behind the sliding panel"),
         ),
       ),
@@ -73,7 +74,10 @@ class _MyHomePageState extends State<MyHomePage> {
         minHeight: panelHeightClosed,
         parallaxEnabled: true,
         parallaxOffset: .5,
-        body: const BackgroundColorPage(), // will be background
+        body: Stack(children: [
+          BackgroundColorPage(),
+          PagedBackground()
+        ]), // will be background
         panelBuilder: (controller) => PanelWidget(
           controller: controller,
         ),
