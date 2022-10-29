@@ -5,6 +5,8 @@ import './src/widget/panel.dart';
 import './src/widget/background.dart';
 import './src/widget/sliding_background.dart';
 
+import './assets/constants.dart' as Constants;
+
 void main() {
   runApp(const MyApp());
 }
@@ -62,8 +64,10 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    final panelHeightOpen = MediaQuery.of(context).size.height * 0.9;
-    final panelHeightClosed = MediaQuery.of(context).size.height * 0.4;
+    final panelHeightOpen =
+        MediaQuery.of(context).size.height * Constants.MAX_PANEL_HEIGHT;
+    final panelHeightClosed =
+        MediaQuery.of(context).size.height * Constants.MIN_PANEL_HEIGHT;
 
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
