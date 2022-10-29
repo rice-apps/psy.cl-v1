@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import './background.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class PagedBackground extends StatelessWidget {
   const PagedBackground({super.key});
@@ -7,19 +8,39 @@ class PagedBackground extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final PageController controller = PageController();
-    return PageView(
-      /// [PageView.scrollDirection] defaults to [Axis.horizontal].
-      /// Use [Axis.vertical] to scroll vertically.
+    const pageViewChildren = <Widget>[
+      Center(
+        child: Text('First Page'),
+      ),
+      Center(
+        child: Text('Second Page'),
+      ),
+      Center(
+        child: Text('Third Page'),
+      ),
+    ];
+
+    final pageView = PageView(
       controller: controller,
-      children: const <Widget>[
-        Center(
-          child: Text('First Page'),
+      children: pageViewChildren,
+    );
+
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        Expanded(
+          child: pageView,
         ),
-        Center(
-          child: Text('Second Page'),
-        ),
-        Center(
-          child: Text('Third Page'),
+        SmoothPageIndicator(
+          controller: controller,
+          count: pageViewChildren.length,
+          axisDirection: Axis.horizontal,
+          effect: const SlideEffect(
+            activeDotColor: Colors.white54,
+            dotHeight: 10,
+            dotColor: Colors.blue,
+            dotWidth: 10,
+          ),
         ),
       ],
     );
