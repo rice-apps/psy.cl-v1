@@ -63,7 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     final panelHeightOpen = MediaQuery.of(context).size.height * 0.9;
-    final panelHeightClosed = MediaQuery.of(context).size.height * 0.55;
+    final panelHeightClosed = MediaQuery.of(context).size.height * 0.4;
 
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
@@ -73,7 +73,7 @@ class _MyHomePageState extends State<MyHomePage> {
         maxHeight: panelHeightOpen,
         minHeight: panelHeightClosed,
         parallaxEnabled: true,
-        parallaxOffset: .5,
+        parallaxOffset: .75,
         body: Stack(children: [
           BackgroundColorPage(),
           PagedBackground()

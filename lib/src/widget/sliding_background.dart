@@ -14,6 +14,7 @@ class PagedBackground extends StatelessWidget {
       children: const <Widget>[
         Center(
           child: Text('First Page'),
+          /// Can also link to other pages here
         ),
         Center(
           child: Text('Second Page'),
