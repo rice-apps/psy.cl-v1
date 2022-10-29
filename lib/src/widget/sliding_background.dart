@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import './background.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import '../../assets/constants.dart' as Constants;
 
 class PagedBackground extends StatelessWidget {
   const PagedBackground({super.key});
@@ -43,7 +44,9 @@ class PagedBackground extends StatelessWidget {
           ),
         ),
         SizedBox(
-          height: 325,
+          height:
+              MediaQuery.of(context).size.height * Constants.MIN_PANEL_HEIGHT +
+                  10,
         )
       ],
     );
