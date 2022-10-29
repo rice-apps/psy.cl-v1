@@ -73,7 +73,7 @@ class _MyHomePageState extends State<MyHomePage> {
         maxHeight: panelHeightOpen,
         minHeight: panelHeightClosed,
         parallaxEnabled: true,
-        parallaxOffset: .75,
+        parallaxOffset: 1,
         body: Stack(children: [
           BackgroundColorPage(),
           PagedBackground()

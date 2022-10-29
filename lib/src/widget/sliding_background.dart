@@ -26,7 +26,7 @@ class PagedBackground extends StatelessWidget {
     );
 
     return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Expanded(
           child: pageView,
@@ -42,6 +42,9 @@ class PagedBackground extends StatelessWidget {
             dotWidth: 10,
           ),
         ),
+        SizedBox(
+          height: 325,
+        )
       ],
     );
   }
