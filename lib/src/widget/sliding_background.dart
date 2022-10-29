@@ -36,10 +36,10 @@ class PagedBackground extends StatelessWidget {
           controller: controller,
           count: pageViewChildren.length,
           axisDirection: Axis.horizontal,
-          effect: const SlideEffect(
+          effect: const ScaleEffect(
             activeDotColor: Colors.white54,
             dotHeight: 10,
-            dotColor: Colors.blue,
+            dotColor: Color.fromARGB(171, 222, 164, 160),
             dotWidth: 10,
           ),
         ),
