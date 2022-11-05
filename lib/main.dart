@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
-import './src/widget/panel.dart';
-import './src/widget/background.dart';
-import './src/widget/sliding_background.dart';
+import 'src/features/landing-page/panel.dart';
+import 'src/features/landing-page/background.dart';
+import 'src/features/landing-page/sliding_background.dart';
 
-import './assets/constants.dart' as Constants;
+import './assets/constants.dart' as constants;
 
 void main() {
   runApp(const MyApp());
@@ -47,14 +47,7 @@ class MyHomePage extends StatefulWidget {
       appBar: AppBar(
         title: const Text("SlidingUpPanelExample"),
       ),
-      body: SlidingUpPanel(
-        panel: const Center(
-          child: Text("This is the sliding Widget"),
-        ),
-        body: const Center(
-          child: Text("This is the Widget behind the sliding panel"),
-        ),
-      ),
+      body: SlidingUpPanel(),
     );
   }
 
@@ -65,9 +58,9 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     final panelHeightOpen =
-        MediaQuery.of(context).size.height * Constants.MAX_PANEL_HEIGHT;
+        MediaQuery.of(context).size.height * constants.MAX_PANEL_HEIGHT;
     final panelHeightClosed =
-        MediaQuery.of(context).size.height * Constants.MIN_PANEL_HEIGHT;
+        MediaQuery.of(context).size.height * constants.MIN_PANEL_HEIGHT;
 
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
@@ -78,10 +71,7 @@ class _MyHomePageState extends State<MyHomePage> {
         minHeight: panelHeightClosed,
         parallaxEnabled: true,
         parallaxOffset: 1,
-        body: Stack(children: [
-          BackgroundColorPage(),
-          PagedBackground()
-        ]), // will be background
+        body: Stack(children: [BackgroundColorPage(), PagedBackground()]),
         panelBuilder: (controller) => PanelWidget(
           controller: controller,
         ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import './background.dart';
+import 'background.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import '../../assets/constants.dart' as Constants;
+import '../../../assets/constants.dart' as constants;
 
 class PagedBackground extends StatelessWidget {
   const PagedBackground({super.key});
@@ -11,13 +11,13 @@ class PagedBackground extends StatelessWidget {
     final PageController controller = PageController();
     const pageViewChildren = <Widget>[
       Center(
-        child: Text('First Page'),
+        child: Text('Progress circle page'),
       ),
       Center(
-        child: Text('Second Page'),
+        child: Text('Calendar page'),
       ),
       Center(
-        child: Text('Third Page'),
+        child: Text('Graphs Page'),
       ),
     ];
 
@@ -45,7 +45,7 @@ class PagedBackground extends StatelessWidget {
         ),
         SizedBox(
           height:
-              MediaQuery.of(context).size.height * Constants.MIN_PANEL_HEIGHT +
+              MediaQuery.of(context).size.height * constants.MIN_PANEL_HEIGHT +
                   10,
         )
       ],
