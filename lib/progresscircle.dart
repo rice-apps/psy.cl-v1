@@ -12,9 +12,9 @@ class ProgressCircle extends StatefulWidget {
 }
 
 class _ProgressCircleState extends State<ProgressCircle> {
-  int _count = 14;
+  int _count = 14; //placeholder; this should start at the current day in cycle when data is available
 
-  void _incrementCounter(int init, int end, int laps) {
+  void _incrementCounter(int init, int end, int laps) { //slider integration
     setState(() {
       // This call to setState tells the Flutter framework that something has
       // changed in this State, which causes it to rerun the build method below
@@ -48,7 +48,7 @@ class _ProgressCircleState extends State<ProgressCircle> {
             ),
           ),
           SingleCircularSlider(
-            28,
+            28, //hardcoded 28 will be replaced with length of cycle when data is available
             28 - _count,
             height: 300,
             width: 300,
@@ -56,31 +56,6 @@ class _ProgressCircleState extends State<ProgressCircle> {
           ),
         ],
       ),
-
-      // Center(
-      //   child: CircularPercentIndicator(
-      //     radius: 300,
-      //     lineWidth: 20,
-      //     animation: true,
-      //     animationDuration: 800,
-      //     percent: (_count / 28),
-      //     center: SingleCircularSlider(28, 1),
-
-      //     progressColor: Colors.white,
-      //     backgroundColor: Colors.grey.shade300,
-      //     circularStrokeCap: CircularStrokeCap.round,
-      //     //center: Text(
-      //'${28 - _count} days \n until period starts',
-      //style: const TextStyle(fontSize: 25, color: Colors.white),
-      //textAlign: TextAlign.center,
-      //),
     );
-    //     ),
-    //     floatingActionButton: FloatingActionButton(
-    //       child: Icon(Icons.add),
-    //       onPressed: _incrementCounter,
-    //     ),
-    //   );
-    //}
   }
 }
