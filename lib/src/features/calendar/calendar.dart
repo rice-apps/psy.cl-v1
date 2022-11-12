@@ -18,6 +18,7 @@ class _Calendar extends State<Calendar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Colors.transparent,
         resizeToAvoidBottomInset: true,
         body: SingleChildScrollView(
           child: TableCalendar(
@@ -25,6 +26,9 @@ class _Calendar extends State<Calendar> {
             lastDay: _lastDay,
             focusedDay: _focusedDay,
             calendarFormat: _calendarFormat,
+            pageJumpingEnabled: false,
+            daysOfWeekVisible: false,
+            availableCalendarFormats: const {CalendarFormat.month: 'Month'},
             selectedDayPredicate: (day) {
               // Use `selectedDayPredicate` to determine which day is currently selected.
               // If this returns true, then `day` will be marked as selected.
@@ -54,6 +58,13 @@ class _Calendar extends State<Calendar> {
               // No need to call `setState()` here
               _focusedDay = focusedDay;
             },
+            headerStyle: const HeaderStyle(
+                titleTextStyle: TextStyle(fontFamily: 'Gotham', fontSize: 20.0),
+                leftChevronVisible: false,
+                rightChevronVisible: false,
+                headerPadding: EdgeInsets.only(left: 200, top: 50)),
+            calendarStyle: const CalendarStyle(
+                rowDecoration: BoxDecoration(color: Colors.transparent)),
           ),
         ));
   }
