@@ -28,6 +28,7 @@ class _Calendar extends State<Calendar> {
             calendarFormat: _calendarFormat,
             pageJumpingEnabled: false,
             daysOfWeekVisible: false,
+            rowHeight: 48.0,
             availableCalendarFormats: const {CalendarFormat.month: 'Month'},
             selectedDayPredicate: (day) {
               // Use `selectedDayPredicate` to determine which day is currently selected.
@@ -59,12 +60,26 @@ class _Calendar extends State<Calendar> {
               _focusedDay = focusedDay;
             },
             headerStyle: const HeaderStyle(
-                titleTextStyle: TextStyle(fontFamily: 'Gotham', fontSize: 20.0),
+                titleTextStyle: TextStyle(
+                  fontFamily: 'Gotham',
+                  fontSize: 32.0,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
                 leftChevronVisible: false,
                 rightChevronVisible: false,
-                headerPadding: EdgeInsets.only(left: 200, top: 50)),
-            calendarStyle: const CalendarStyle(
-                rowDecoration: BoxDecoration(color: Colors.transparent)),
+                headerPadding: EdgeInsets.only(left: 135, top: 50)),
+            calendarStyle: CalendarStyle(
+                rowDecoration: const BoxDecoration(color: Colors.transparent),
+                outsideDaysVisible: false,
+                defaultTextStyle: const TextStyle(color: Colors.white),
+                selectedDecoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(color: Colors.white)),
+                weekendTextStyle: const TextStyle(color: Colors.white),
+                todayDecoration: const BoxDecoration(
+                    color: Color.fromARGB(174, 254, 100, 100),
+                    shape: BoxShape.circle)),
           ),
         ));
   }
