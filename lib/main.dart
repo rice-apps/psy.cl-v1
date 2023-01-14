@@ -4,30 +4,47 @@ void main() {
   runApp(const MyApp());
 }
 
-Map<String, String> invertImage = {};
-
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
   @override
+  State<MyApp> createState() => _MyApp();
+}
+
+class _MyApp extends State<MyApp> {
+  @override
+  Map<String, String> invertImage = {};
   Widget build(BuildContext context) {
     Color color = Theme.of(context).primaryColor;
     Widget customRowOne = _buildCustomButtonRow(
         'assets/images/low.png',
+        'assets/images/invertLow.png',
         'assets/images/spotting.png',
+        'assets/images/invertSpotting.png',
         'assets/images/normal.png',
-        'assets/images/normal.png',
+        'assets/images/invertNormal.png',
+        'assets/images/high.png',
+        'assets/images/invertHigh.png',
         "Bleeding");
     Widget customRowTwo = _buildCustomButtonRow(
         'assets/images/exhausted.png',
+        'assets/images/invertExhausted.png',
         'assets/images/tired.png',
+        'assets/images/invertTired.png',
         'assets/images/normalEnergy.png',
-        'assets/images/normal.png',
+        'assets/images/invertNormalEnergy.png',
+        'assets/images/energized.png',
+        'assets/images/invertEnergized.png',
         "Energy");
     Widget customRowThree = _buildCustomButtonRow(
+        'assets/images/PMS.png',
+        'assets/images/invertPMS.png',
         'assets/images/sensitive.png',
+        'assets/images/invertSensitive.png',
         'assets/images/sad.png',
+        'assets/images/invertSad.png',
         'assets/images/happy.png',
-        'assets/images/normal.png',
+        'assets/images/invertHappy.png',
         "Mood");
 
     return MaterialApp(
@@ -43,7 +60,8 @@ class MyApp extends StatefulWidget {
                     children: [customRowOne, customRowTwo, customRowThree]))));
   }
 
-  Widget buildButton(String imageSrc) {
+  bool _isPressed = false;
+  Widget buildButton(String imageSrc, String invertedImageSrc) {
     return Material(
         color: Colors.blue,
         elevation: 8,
@@ -62,19 +80,33 @@ class MyApp extends StatefulWidget {
             child: InkWell(
                 onTap: () => {
                       setState(() {
-                        invertImage['pressed'] = 'assets/images/sensitive.png';
+                        if (_isPressed) {
+                          _isPressed = false;
+                        } else {
+                          _isPressed = true;
+                        }
                       })
                     },
                 child: Ink.image(
-                  image: AssetImage(imageSrc),
+                  image: (_isPressed
+                      ? AssetImage(invertedImageSrc)
+                      : AssetImage(imageSrc)),
                   height: 83,
                   width: 83,
                   fit: BoxFit.cover,
                 ))));
   }
 
-  Container _buildCustomButtonRow(String imageSrc1, String imageSrc2,
-      String imageSrc3, String imageSrc4, String header) {
+  Container _buildCustomButtonRow(
+      String imageSrc1,
+      String invertImageSrc1,
+      String imageSrc2,
+      String invertImageSrc2,
+      String imageSrc3,
+      String invertImageSrc3,
+      String imageSrc4,
+      String invertImageSrc4,
+      String header) {
     return Container(
         height: 175,
         margin: const EdgeInsets.only(top: 15, bottom: 15),
@@ -101,95 +133,17 @@ class MyApp extends StatefulWidget {
           Container(
               child: SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
-                  padding: const EdgeInsets.only(left: 12, right: 12),
+                  padding:
+                      const EdgeInsets.only(left: 12, right: 12, bottom: 12),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      buildButton(imageSrc1),
-                      buildButton(imageSrc2),
-                      buildButton(imageSrc3),
-                      buildButton(imageSrc4)
+                      buildButton(imageSrc1, invertImageSrc1),
+                      buildButton(imageSrc2, invertImageSrc2),
+                      buildButton(imageSrc3, invertImageSrc3),
+                      buildButton(imageSrc4, invertImageSrc4)
                     ],
                   )))
         ]));
-  }
-
-  Row _buildButtonRow(Color color, IconData icon, String labelOne,
-      String labelTwo, String labelThree) {
-    return Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-      SizedBox(
-        height: 75,
-        width: 75,
-        child: ElevatedButton.icon(
-            icon: Icon(icon, size: 24.0),
-            label: Text(labelOne),
-            onPressed: () {},
-            style: ElevatedButton.styleFrom(
-              shape: CircleBorder(),
-              padding: EdgeInsets.all(20),
-              backgroundColor: color,
-            )),
-      ),
-      SizedBox(
-        height: 75,
-        width: 75,
-        child: ElevatedButton.icon(
-            icon: Icon(Icons.bloodtype),
-            label: Text(labelTwo),
-            onPressed: () {},
-            style: ElevatedButton.styleFrom(
-              shape: CircleBorder(),
-              padding: EdgeInsets.all(20),
-              backgroundColor: Colors.red,
-            )),
-      ),
-      SizedBox(
-        height: 75,
-        width: 75,
-        child: ElevatedButton.icon(
-            icon: Icon(Icons.bloodtype),
-            label: Text(labelThree),
-            onPressed: () {},
-            style: ElevatedButton.styleFrom(
-              shape: CircleBorder(),
-              padding: EdgeInsets.all(20),
-              backgroundColor: Colors.red,
-            )),
-      )
-    ]);
-  }
-
-  Column _buildButtonColumn(Color color, IconData icon, String label) {
-    return Column(
-      mainAxisSize: MainAxisSize.max,
-      children: [
-        Icon(icon, color: color),
-        Row(
-            //margin: const EdgeInsets.only(top: 8),
-            children: <Widget>[
-              Text(
-                label,
-                style: TextStyle(
-                  fontSize: 12,
-                  fontWeight: FontWeight.w400,
-                  color: color,
-                ),
-              ),
-              ElevatedButton(
-                  child: const Icon(Icons.train),
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    shape: CircleBorder(),
-                    padding: EdgeInsets.all(20),
-                  ))
-            ]),
-      ],
-    );
-  }
-
-  @override
-  State<StatefulWidget> createState() {
-    // TODO: implement createState
-    throw UnimplementedError();
   }
 }
