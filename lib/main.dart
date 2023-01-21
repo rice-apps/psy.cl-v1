@@ -11,6 +11,11 @@ class MyApp extends StatefulWidget {
   State<MyApp> createState() => _MyApp();
 }
 
+bool _isPressed1 = true;
+bool _isPressed2 = true;
+bool _isPressed3 = true;
+bool _isPressed4 = true;
+
 class _MyApp extends State<MyApp> {
   @override
   Map<String, String> invertImage = {};
@@ -61,11 +66,10 @@ class _MyApp extends State<MyApp> {
   }
 
   bool _isPressed = false;
-  Widget buildButton(String imageSrc, String invertedImageSrc) {
+  Widget buildButton(String imageSrc, String invertedImageSrc, bool isPressed) {
     return Material(
         color: Colors.blue,
         elevation: 8,
-        //borderRadius: BorderRadius.circular(28),
         shape: const CircleBorder(),
         clipBehavior: Clip.antiAliasWithSaveLayer,
         child: Container(
@@ -75,16 +79,11 @@ class _MyApp extends State<MyApp> {
               shape: BoxShape.circle,
               border: Border.all(
                   color: Color.fromARGB(255, 236, 139, 132), width: 3),
-              //borderRadius: BorderRadius.circular(10)
             ),
             child: InkWell(
                 onTap: () => {
                       setState(() {
-                        if (_isPressed) {
-                          _isPressed = false;
-                        } else {
-                          _isPressed = true;
-                        }
+                        _isPressed = !_isPressed;
                       })
                     },
                 child: Ink.image(
@@ -138,10 +137,10 @@ class _MyApp extends State<MyApp> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      buildButton(imageSrc1, invertImageSrc1),
-                      buildButton(imageSrc2, invertImageSrc2),
-                      buildButton(imageSrc3, invertImageSrc3),
-                      buildButton(imageSrc4, invertImageSrc4)
+                      buildButton(imageSrc1, invertImageSrc1, _isPressed1),
+                      buildButton(imageSrc2, invertImageSrc2, _isPressed2),
+                      buildButton(imageSrc3, invertImageSrc3, _isPressed3),
+                      buildButton(imageSrc4, invertImageSrc4, _isPressed4)
                     ],
                   )))
         ]));
