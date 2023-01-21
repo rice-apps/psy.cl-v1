@@ -15,6 +15,13 @@ class _Calendar extends State<Calendar> {
       DateTime.utc(_focusedDay.year, _focusedDay.month, 1);
   DateTime? _selectedDay;
 
+  // Highlighted days
+  RangeSelectionMode _rangeSelectionMode = RangeSelectionMode.toggledOff;
+  late final DateTime _rangeStart =
+      DateTime.utc(_focusedDay.year, _focusedDay.month, _focusedDay.day - 1);
+  late final DateTime _rangeEnd =
+      DateTime.utc(_focusedDay.year, _focusedDay.month, _focusedDay.day + 2);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,22 +32,18 @@ class _Calendar extends State<Calendar> {
             firstDay: _firstDay,
             lastDay: _lastDay,
             focusedDay: _focusedDay,
+            rangeStartDay: _rangeStart,
+            rangeEndDay: _rangeEnd,
             calendarFormat: _calendarFormat,
             pageJumpingEnabled: false,
             daysOfWeekVisible: false,
             rowHeight: 48.0,
             availableCalendarFormats: const {CalendarFormat.month: 'Month'},
             selectedDayPredicate: (day) {
-              // Use `selectedDayPredicate` to determine which day is currently selected.
-              // If this returns true, then `day` will be marked as selected.
-
-              // Using `isSameDay` is recommended to disregard
-              // the time-part of compared DateTime objects.
               return isSameDay(_selectedDay, day);
             },
             onDaySelected: (selectedDay, focusedDay) {
               if (!isSameDay(_selectedDay, selectedDay)) {
-                // Call `setState()` when updating the selected day
                 setState(() {
                   _selectedDay = selectedDay;
                   _focusedDay = focusedDay;
