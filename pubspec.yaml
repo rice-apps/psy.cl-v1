@@ -41,6 +41,8 @@ dependencies:
   sliding_up_panel: ^2.0.0+1
   smooth_page_indicator: ^1.0.0+2
   table_calendar: ^3.0.8
+  percent_indicator: ^3.4.0
+  flutter_circular_slider : ^2.5.0
 
 
 dev_dependencies:
