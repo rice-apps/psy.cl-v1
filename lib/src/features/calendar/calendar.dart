@@ -85,6 +85,7 @@ class _Calendar extends State<Calendar> {
                 defaultTextStyle: _textStyle,
                 selectedDecoration: BoxDecoration(
                     shape: BoxShape.circle,
+                    color: Colors.redAccent,
                     border: Border.all(color: Colors.white)),
                 weekendTextStyle: _textStyle,
                 todayDecoration: const BoxDecoration(
