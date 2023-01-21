@@ -7,6 +7,13 @@ class Calendar extends StatefulWidget {
 }
 
 class _Calendar extends State<Calendar> {
+  // Colors
+  final Color _rangeHighlight = Color.fromARGB(255, 255, 126, 126);
+
+  // Styles
+  final TextStyle _textStyle = TextStyle(color: Colors.white);
+
+  // Current date
   CalendarFormat _calendarFormat = CalendarFormat.month;
   DateTime _focusedDay = DateTime.now();
   late final DateTime _lastDay =
@@ -18,9 +25,9 @@ class _Calendar extends State<Calendar> {
   // Highlighted days
   RangeSelectionMode _rangeSelectionMode = RangeSelectionMode.toggledOff;
   late final DateTime _rangeStart =
-      DateTime.utc(_focusedDay.year, _focusedDay.month, _focusedDay.day - 1);
+      DateTime.utc(_focusedDay.year, _focusedDay.month, _focusedDay.day - 10);
   late final DateTime _rangeEnd =
-      DateTime.utc(_focusedDay.year, _focusedDay.month, _focusedDay.day + 2);
+      DateTime.utc(_focusedDay.year, _focusedDay.month, _focusedDay.day - 2);
 
   @override
   Widget build(BuildContext context) {
@@ -75,14 +82,20 @@ class _Calendar extends State<Calendar> {
             calendarStyle: CalendarStyle(
                 rowDecoration: const BoxDecoration(color: Colors.transparent),
                 outsideDaysVisible: false,
-                defaultTextStyle: const TextStyle(color: Colors.white),
+                defaultTextStyle: _textStyle,
                 selectedDecoration: BoxDecoration(
                     shape: BoxShape.circle,
                     border: Border.all(color: Colors.white)),
-                weekendTextStyle: const TextStyle(color: Colors.white),
+                weekendTextStyle: _textStyle,
                 todayDecoration: const BoxDecoration(
                     color: Color.fromARGB(174, 254, 100, 100),
-                    shape: BoxShape.circle)),
+                    shape: BoxShape.circle),
+                rangeHighlightColor: _rangeHighlight,
+                rangeStartDecoration: BoxDecoration(
+                    color: _rangeHighlight, shape: BoxShape.circle),
+                rangeEndDecoration: BoxDecoration(
+                    color: _rangeHighlight, shape: BoxShape.circle),
+                withinRangeTextStyle: _textStyle),
           ),
         ));
   }
