@@ -8,10 +8,10 @@ class Calendar extends StatefulWidget {
 
 class _Calendar extends State<Calendar> {
   // Colors
-  final Color _rangeHighlight = Color.fromARGB(255, 255, 126, 126);
+  final Color _rangeHighlight = const Color.fromARGB(255, 255, 126, 126);
 
   // Styles
-  final TextStyle _textStyle = TextStyle(color: Colors.white);
+  final TextStyle _textStyle = const TextStyle(color: Colors.white);
 
   // Current date
   CalendarFormat _calendarFormat = CalendarFormat.month;
