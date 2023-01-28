@@ -64,17 +64,8 @@ class Todo extends Model {
     return _description;
   }
   
-  bool get isComplete {
-    try {
-      return _isComplete!;
-    } catch(e) {
-      throw new AmplifyCodeGenModelException(
-          AmplifyExceptionMessages.codeGenRequiredFieldForceCastExceptionMessage,
-          recoverySuggestion:
-            AmplifyExceptionMessages.codeGenRequiredFieldForceCastRecoverySuggestion,
-          underlyingException: e.toString()
-          );
-    }
+  bool? get isComplete {
+    return _isComplete;
   }
   
   TemporalDateTime? get createdAt {
@@ -85,9 +76,9 @@ class Todo extends Model {
     return _updatedAt;
   }
   
-  const Todo._internal({required this.id, required name, description, required isComplete, createdAt, updatedAt}): _name = name, _description = description, _isComplete = isComplete, _createdAt = createdAt, _updatedAt = updatedAt;
+  const Todo._internal({required this.id, required name, description, isComplete, createdAt, updatedAt}): _name = name, _description = description, _isComplete = isComplete, _createdAt = createdAt, _updatedAt = updatedAt;
   
-  factory Todo({String? id, required String name, String? description, required bool isComplete}) {
+  factory Todo({String? id, required String name, String? description, bool? isComplete}) {
     return Todo._internal(
       id: id == null ? UUID.getUUID() : id,
       name: name,
@@ -188,7 +179,7 @@ class Todo extends Model {
     
     modelSchemaDefinition.addField(ModelFieldDefinition.field(
       key: Todo.ISCOMPLETE,
-      isRequired: true,
+      isRequired: false,
       ofType: ModelFieldType(ModelFieldTypeEnum.bool)
     ));
     
