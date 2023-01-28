@@ -8,10 +8,12 @@ class Button extends StatefulWidget {
   final String normalImg;
   final String invertedImg;
 
+  @override
   State<Button> createState() => _Button();
 }
 
 class _Button extends State<Button> {
+  @override
   Widget build(BuildContext context) {
     return buildButton(widget.normalImg, widget.invertedImg);
   }
@@ -21,7 +23,6 @@ class _Button extends State<Button> {
     return Material(
         color: Colors.blue,
         elevation: 8,
-        //borderRadius: BorderRadius.circular(28),
         shape: const CircleBorder(),
         clipBehavior: Clip.antiAliasWithSaveLayer,
         child: Container(
@@ -30,8 +31,7 @@ class _Button extends State<Button> {
               color: Colors.transparent,
               shape: BoxShape.circle,
               border: Border.all(
-                  color: Color.fromARGB(255, 236, 139, 132), width: 3),
-              //borderRadius: BorderRadius.circular(10)
+                  color: const Color.fromARGB(255, 236, 139, 132), width: 3),
             ),
             child: InkWell(
                 onTap: () => {
