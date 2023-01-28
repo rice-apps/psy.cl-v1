@@ -57,12 +57,12 @@ class _Buttons extends State<Buttons> {
       String header) {
     return Container(
         height: 175,
-        margin: const EdgeInsets.only(top: 15, bottom: 15),
+        margin: const EdgeInsets.only(top: 20, bottom: 20),
         decoration: const BoxDecoration(
           color: Colors.white,
         ),
         child: Column(children: [
-          const SizedBox(height: 15),
+          const SizedBox(height: 5),
           Material(
               child: Text(header,
                   textAlign: TextAlign.center,
@@ -71,6 +71,7 @@ class _Buttons extends State<Buttons> {
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                   ))),
+          const SizedBox(height: 15),
           Container(
               child: SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
@@ -90,7 +91,7 @@ class _Buttons extends State<Buttons> {
                       Button(normalImg: imageSrc4, invertedImg: invertImageSrc4)
                     ],
                   ))),
-          const SizedBox(height: 20),
+          const SizedBox(height: 15),
           const Divider(thickness: 2, color: Colors.black),
         ]));
   }
