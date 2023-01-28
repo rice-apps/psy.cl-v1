@@ -60,12 +60,6 @@ class _Buttons extends State<Buttons> {
         margin: const EdgeInsets.only(top: 15, bottom: 15),
         decoration: const BoxDecoration(
           color: Colors.white,
-          boxShadow: <BoxShadow>[
-            BoxShadow(
-                color: Color.fromARGB(135, 77, 76, 76),
-                blurRadius: 15.0,
-                offset: Offset(0.0, 0.75))
-          ],
         ),
         child: Column(children: [
           const SizedBox(height: 15),
@@ -77,7 +71,6 @@ class _Buttons extends State<Buttons> {
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                   ))),
-          const SizedBox(height: 15),
           Container(
               child: SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
@@ -96,7 +89,9 @@ class _Buttons extends State<Buttons> {
                           normalImg: imageSrc3, invertedImg: invertImageSrc3),
                       Button(normalImg: imageSrc4, invertedImg: invertImageSrc4)
                     ],
-                  )))
+                  ))),
+          const SizedBox(height: 20),
+          const Divider(thickness: 2, color: Colors.black),
         ]));
   }
 }

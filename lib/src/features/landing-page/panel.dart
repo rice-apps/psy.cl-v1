@@ -24,13 +24,7 @@ class PanelWidget extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 24),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const <Widget>[
-            Text(
-              'Data entry here',
-              style: TextStyle(fontWeight: FontWeight.w600),
-            ),
-            Buttons()
-          ],
+          children: const <Widget>[Buttons()],
         ),
       );
 }
