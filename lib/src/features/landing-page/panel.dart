@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './buttons.dart';
 
 class PanelWidget extends StatelessWidget {
   final ScrollController controller;
@@ -28,13 +29,7 @@ class PanelWidget extends StatelessWidget {
               'Data entry here',
               style: TextStyle(fontWeight: FontWeight.w600),
             ),
-            SizedBox(height: 12),
-            Text("""
-              Buttons here\n\n\n\n\n\n\n\n\n\n\n
-              Buttons here\n\n\n\n\n\n\n\n\n\n\n
-              Buttons here\n\n\n\n\n\n\n\n\n\n\n
-              Buttons here\n\n\n\n\n\n\n\n\n\n\n
-              """),
+            Buttons()
           ],
         ),
       );

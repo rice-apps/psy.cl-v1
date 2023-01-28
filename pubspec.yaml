@@ -64,6 +64,33 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+  assets:
+    - assets/images/spotting.png
+    - assets/images/low.png
+    - assets/images/normal.png
+    - assets/images/high.png
+    - assets/images/invertLow.png
+    - assets/images/invertSpotting.png
+    - assets/images/invertNormal.png
+    - assets/images/invertHigh.png
+
+    - assets/images/exhausted.png
+    - assets/images/tired.png
+    - assets/images/normalEnergy.png
+    - assets/images/energized.png
+    - assets/images/invertExhausted.png
+    - assets/images/invertTired.png
+    - assets/images/invertNormalEnergy.png
+    - assets/images/invertEnergized.png
+
+    - assets/images/PMS.png
+    - assets/images/sensitive.png
+    - assets/images/sad.png
+    - assets/images/happy.png
+    - assets/images/invertPMS.png
+    - assets/images/invertSensitive.png
+    - assets/images/invertSad.png
+    - assets/images/invertHappy.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:
