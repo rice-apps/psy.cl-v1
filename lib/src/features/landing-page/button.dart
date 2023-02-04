@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../assets/constants.dart' as constants;
 
 class Button extends StatefulWidget {
   const Button(
@@ -21,7 +22,6 @@ class _Button extends State<Button> {
   bool _isPressed = false;
   Widget buildButton(String imageSrc, String invertedImageSrc) {
     return Material(
-        color: Colors.blue,
         elevation: 8,
         shape: const CircleBorder(),
         clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -31,7 +31,7 @@ class _Button extends State<Button> {
               color: Colors.transparent,
               shape: BoxShape.circle,
               border: Border.all(
-                  color: const Color.fromARGB(255, 236, 139, 132), width: 3),
+                  color: constants.PERIOD, width: 3),
             ),
             child: InkWell(
                 onTap: () => {

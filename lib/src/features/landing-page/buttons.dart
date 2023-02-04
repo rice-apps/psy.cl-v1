@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import './button.dart';
+import '../../../assets/constants.dart' as constants;
 
 class Buttons extends StatefulWidget {
   const Buttons({super.key});
@@ -59,7 +60,7 @@ class _Buttons extends State<Buttons> {
         height: 175,
         margin: const EdgeInsets.only(top: 20, bottom: 20),
         decoration: const BoxDecoration(
-          color: Colors.white,
+          color: constants.WHITE,
         ),
         child: Column(children: [
           const SizedBox(height: 5),
@@ -67,7 +68,7 @@ class _Buttons extends State<Buttons> {
               child: Text(header,
                   textAlign: TextAlign.center,
                   style: const TextStyle(
-                    color: Colors.black,
+                    color: constants.BLACK,
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                   ))),
@@ -92,7 +93,7 @@ class _Buttons extends State<Buttons> {
                     ],
                   ))),
           const SizedBox(height: 15),
-          const Divider(thickness: 2, color: Colors.black),
+          const Divider(thickness: 2, color: constants.BLACK),
         ]));
   }
 }

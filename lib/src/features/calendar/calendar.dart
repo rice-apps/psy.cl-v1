@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
+import '../../../assets/constants.dart' as constants;
 
 class Calendar extends StatefulWidget {
   @override
@@ -11,7 +12,7 @@ class _Calendar extends State<Calendar> {
   final Color _rangeHighlight = const Color.fromARGB(255, 255, 126, 126);
 
   // Styles
-  final TextStyle _textStyle = const TextStyle(color: Colors.white);
+  final TextStyle _textStyle = const TextStyle(color: constants.WHITE);
 
   // Current date
   CalendarFormat _calendarFormat = CalendarFormat.month;
@@ -73,7 +74,7 @@ class _Calendar extends State<Calendar> {
                 titleTextStyle: TextStyle(
                   fontFamily: 'Gotham',
                   fontSize: 32.0,
-                  color: Colors.white,
+                  color: constants.WHITE,
                   fontWeight: FontWeight.bold,
                 ),
                 leftChevronVisible: false,
@@ -85,11 +86,11 @@ class _Calendar extends State<Calendar> {
                 defaultTextStyle: _textStyle,
                 selectedDecoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: Colors.redAccent,
-                    border: Border.all(color: Colors.white)),
+                    color: constants.PERIOD,
+                    border: Border.all(color: constants.WHITE)),
                 weekendTextStyle: _textStyle,
                 todayDecoration: const BoxDecoration(
-                    color: Color.fromARGB(174, 254, 100, 100),
+                    color: constants.PERIOD,
                     shape: BoxShape.circle),
                 rangeHighlightColor: _rangeHighlight,
                 rangeStartDecoration: BoxDecoration(
