@@ -7,8 +7,8 @@ class BackgroundColorPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        //backgroundColor: Colors.redAccent,
-        backgroundColor: constants.WHITE,
+        backgroundColor: Colors.redAccent,
+        //backgroundColor: constants.WHITE,
         body: Container(
           decoration: const BoxDecoration(
             // gradient: LinearGradient(
