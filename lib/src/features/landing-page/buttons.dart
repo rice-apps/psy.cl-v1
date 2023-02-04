@@ -71,7 +71,7 @@ class _Buttons extends State<Buttons> {
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                   ))),
-          const SizedBox(height: 15),
+          const SizedBox(height: 5),
           Container(
               child: SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
