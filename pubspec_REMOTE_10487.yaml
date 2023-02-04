@@ -36,15 +36,6 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
-
-  # Frontend dependencies
-  sliding_up_panel: ^2.0.0+1
-  smooth_page_indicator: ^1.0.0+2
-  table_calendar: ^3.0.8
-  percent_indicator: ^3.4.0
-  flutter_circular_slider : ^2.5.0
-  sleek_circular_slider: ^2.0.1
-
   percent_indicator: ^3.4.0
   flutter_circular_slider : ^2.5.0
 
@@ -69,33 +60,6 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
-  assets:
-    - assets/images/spotting.png
-    - assets/images/low.png
-    - assets/images/normal.png
-    - assets/images/high.png
-    - assets/images/invertLow.png
-    - assets/images/invertSpotting.png
-    - assets/images/invertNormal.png
-    - assets/images/invertHigh.png
-
-    - assets/images/exhausted.png
-    - assets/images/tired.png
-    - assets/images/normalEnergy.png
-    - assets/images/energized.png
-    - assets/images/invertExhausted.png
-    - assets/images/invertTired.png
-    - assets/images/invertNormalEnergy.png
-    - assets/images/invertEnergized.png
-
-    - assets/images/PMS.png
-    - assets/images/sensitive.png
-    - assets/images/sad.png
-    - assets/images/happy.png
-    - assets/images/invertPMS.png
-    - assets/images/invertSensitive.png
-    - assets/images/invertSad.png
-    - assets/images/invertHappy.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:
