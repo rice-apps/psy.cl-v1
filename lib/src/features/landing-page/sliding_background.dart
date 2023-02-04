@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'background.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import '../calendar/calendar.dart';
 import '../../../assets/constants.dart' as constants;
 
 class PagedBackground extends StatelessWidget {
@@ -9,14 +10,14 @@ class PagedBackground extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final PageController controller = PageController();
-    const pageViewChildren = <Widget>[
-      Center(
+    final pageViewChildren = <Widget>[
+      const Center(
         child: Text('Progress circle page'),
       ),
       Center(
-        child: Text('Calendar page'),
+        child: Calendar(),
       ),
-      Center(
+      const Center(
         child: Text('Graphs Page'),
       ),
     ];

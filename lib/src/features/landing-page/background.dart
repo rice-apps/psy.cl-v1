@@ -3,7 +3,7 @@ import '../../../assets/constants.dart' as constants;
 
 
 class BackgroundColorPage extends StatelessWidget {
-  const BackgroundColorPage({super.key}); //const?
+  const BackgroundColorPage({super.key});
 
   @override
   Widget build(BuildContext context) => Scaffold(
