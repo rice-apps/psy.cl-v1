@@ -45,9 +45,6 @@ dependencies:
   flutter_circular_slider : ^2.5.0
   sleek_circular_slider: ^2.0.1
 
-  percent_indicator: ^3.4.0
-  flutter_circular_slider : ^2.5.0
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
