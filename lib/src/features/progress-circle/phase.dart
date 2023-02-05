@@ -9,18 +9,19 @@ class Phase {
   int endDay;
   Color color;
   Paint paint = Paint();
+  double startRadians = 0;
+  double sweepRadians = 0;
 
   Phase(this.startDay, this.endDay, this.color) {
     paint = Paint()
       ..color = color
       ..style = PaintingStyle.stroke
       ..strokeWidth = constants.STROKE_WIDTH;
+    startRadians = toRadians(startDay);
+    sweepRadians = toRadians(endDay) - toRadians(startDay);
   }
 
-  List<double> toRadians() {
-    return [
-      2 * math.pi * (startDay / 28) - math.pi / 2,
-      2 * math.pi * (endDay / 28) - math.pi / 2
-    ];
+  double toRadians(int days) {
+    return 2 * math.pi * (days / 28) - math.pi / 2;
   }
 }

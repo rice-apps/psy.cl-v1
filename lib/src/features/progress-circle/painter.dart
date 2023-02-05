@@ -1,24 +1,32 @@
 import "package:flutter/material.dart";
-import 'package:flutter/rendering.dart';
 import 'dart:math' as math;
+import '../../../assets/constants.dart' as constants;
+import './phase.dart';
 
 class Arc extends CustomPainter {
-  final Paint p1Paint = Paint()
-    ..color = Color(0xFFECC2C2)
+  final Paint periodPaint = Paint()
+    ..color = constants.PERIOD
     ..style = PaintingStyle.stroke
-    ..strokeWidth = 20;
-  final Paint p2Paint = Paint()
-    ..color = Color(0xFFD9E7EA)
+    ..strokeWidth = constants.STROKE_WIDTH;
+  final Paint follPaint = Paint()
+    ..color = constants.FOLLICULAR
     ..style = PaintingStyle.stroke
-    ..strokeWidth = 20;
-  final Paint p3Paint = Paint()
-    ..color = Color(0xFFC2A3DB)
+    ..strokeWidth = constants.STROKE_WIDTH;
+  final Paint ovulPaint = Paint()
+    ..color = constants.OVULATION
     ..style = PaintingStyle.stroke
-    ..strokeWidth = 20;
-  final Paint p4Paint = Paint()
-    ..color = Color(0xFFCCDED7)
+    ..strokeWidth = constants.STROKE_WIDTH;
+  final Paint lutealPaint = Paint()
+    ..color = constants.LUTEAL
     ..style = PaintingStyle.stroke
-    ..strokeWidth = 20;
+    ..strokeWidth = constants.STROKE_WIDTH;
+
+  List<Phase> phases = [
+    Phase(0, 7, constants.PERIOD),
+    Phase(7, 12, constants.FOLLICULAR),
+    Phase(12, 19, constants.OVULATION),
+    Phase(19, 28, constants.LUTEAL)
+  ];
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -26,24 +34,23 @@ class Arc extends CustomPainter {
       ..color = Colors.blue
       ..style = PaintingStyle.stroke
       ..strokeWidth = 20;
-    canvas.drawArc(
-        Rect.fromCenter(
-            center: Offset(size.height / 2, size.width / 2),
-            width: size.width,
-            height: size.height),
-        0,
-        -math.pi,
-        false,
-        p1Paint);
-    canvas.drawArc(
-        Rect.fromCenter(
-            center: Offset(size.height / 2, size.width / 2),
-            width: size.width,
-            height: size.height),
-        0,
-        math.pi,
-        false,
-        paint);
+    Rect circleBounds = Rect.fromCenter(
+        center: Offset(size.height / 2, size.width / 2 + 10),
+        width: size.width,
+        height: size.height);
+    // canvas.drawArc(
+    //     Rect.fromCenter(
+    //         center: Offset(size.height / 2, size.width / 2),
+    //         width: size.width,
+    //         height: size.height),
+    //     0,
+    //     math.pi,
+    //     false,
+    //     periodPaint);
+    phases.forEach((phase) {
+      canvas.drawArc(circleBounds, phase.startRadians, phase.sweepRadians,
+          false, phase.paint);
+    });
   }
 
   // Since this Sky painter has no fields, it always paints
