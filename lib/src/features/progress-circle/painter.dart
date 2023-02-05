@@ -13,11 +13,6 @@ class Arc extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    Paint paint = Paint()
-      ..color = Colors.blue
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 20;
-
     Rect circleBounds = Rect.fromCenter(
         center: Offset(size.height / 2, size.width / 2 + 10),
         width: size.width,

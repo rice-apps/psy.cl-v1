@@ -12,6 +12,7 @@ class _ProgressCircle extends State<ProgressCircle> {
     return CustomPaint(
       painter: Arc(),
       size: Size(250, 250),
+      isComplex: true,
     );
   }
 }
