@@ -3,7 +3,10 @@ import 'dart:math' as math;
 import '../../../assets/constants.dart' as constants;
 import './phase.dart';
 
-class Arc extends CustomPainter {
+class SectionedCircle extends CustomPainter {
+  final double radiusFactor;
+  SectionedCircle({required this.radiusFactor});
+
   List<Phase> phases = [
     Phase(0, 7, constants.PERIOD),
     Phase(7, 12, constants.FOLLICULAR),
@@ -13,11 +16,11 @@ class Arc extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    Rect circleBounds = Rect.fromCenter(
-        center: Offset(size.height / 2, size.width / 2 + 10),
-        width: size.width,
-        height: size.height);
+    Offset offset = Offset(size.height / 2, size.width / 2);
+    final double radius = math.min(size.height, size.width) * radiusFactor;
+    Rect circleBounds = Rect.fromCircle(center: offset, radius: radius);
 
+    // Draw phase arcs
     phases.forEach((phase) {
       canvas.drawArc(circleBounds, phase.startRadians, phase.sweepRadians,
           false, phase.paint);
@@ -25,5 +28,5 @@ class Arc extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(Arc oldDelegate) => false;
+  bool shouldRepaint(SectionedCircle oldDelegate) => false;
 }
