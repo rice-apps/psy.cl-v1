@@ -24,7 +24,6 @@ class MyApp extends StatelessWidget {
   }
 }
 
-
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
 
@@ -66,7 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         borderRadius: const BorderRadius.vertical(top: Radius.circular(30)),
         boxShadow: const [
-          BoxShadow(blurRadius: 8.0, color: constants.DARKGRAY)
+          BoxShadow(blurRadius: 8.0, color: constants.DARK_GRAY)
         ],
       ),
     );
