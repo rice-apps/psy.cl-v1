@@ -42,13 +42,12 @@ class _ProgressCircle extends State<ProgressCircle> {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text(
+                Text(
                   "10 days until period starts",
                   style: TextStyle(
-                    fontFamily: "Metropolis",
-                    fontSize: 30,
-                    color: constants.DARK_GRAY,
-                  ),
+                      fontFamily: "Metropolis",
+                      fontSize: 30,
+                      color: Colors.grey.shade800),
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(
@@ -58,7 +57,7 @@ class _ProgressCircle extends State<ProgressCircle> {
                     style: TextStyle(
                         fontFamily: "Metropolis",
                         fontSize: 15,
-                        color: Colors.purple.shade400))
+                        color: Colors.purple.shade300))
               ],
             ),
           ))
