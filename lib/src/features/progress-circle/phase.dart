@@ -16,7 +16,8 @@ class Phase {
     paint = Paint()
       ..color = color
       ..style = PaintingStyle.stroke
-      ..strokeWidth = constants.STROKE_WIDTH;
+      ..strokeWidth = constants.STROKE_WIDTH
+      ..strokeCap = StrokeCap.round;
     startRadians = toRadians(startDay);
     sweepRadians = toRadians(endDay) - toRadians(startDay);
   }
