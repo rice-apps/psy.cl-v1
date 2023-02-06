@@ -9,10 +9,15 @@ class ProgressCircle extends StatefulWidget {
 class _ProgressCircle extends State<ProgressCircle> {
   @override
   Widget build(BuildContext context) {
-    return CustomPaint(
-      painter: Arc(),
-      size: Size(250, 250),
-      isComplex: true,
-    );
+    return Stack(children: [
+      Align(
+          alignment: Alignment.center,
+          child: CustomPaint(
+            painter: Arc(),
+            size: Size(250, 250),
+            isComplex: true,
+          )),
+      Align(alignment: Alignment.center, child: Text("CYCLE DETAILS HERE"))
+    ]);
   }
 }
