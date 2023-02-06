@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'progress_painter.dart';
-import 'inner_circle_painter.dart';
+import '../../../assets/constants.dart' as constants;
 
 class ProgressCircle extends StatefulWidget {
   const ProgressCircle({super.key});
@@ -24,16 +24,43 @@ class _ProgressCircle extends State<ProgressCircle> {
           )),
       Align(
           alignment: Alignment.center,
-          child: CustomPaint(
-            child: SizedBox(
-              child: Align(
-                  alignment: Alignment.center,
-                  child: Text("CYCLE DETAILS HERE")),
-              height: size.height,
-              width: size.width,
+          child: Container(
+            alignment: Alignment.center,
+            height: size.height,
+            width: size.width,
+            padding: const EdgeInsets.all(15),
+            decoration: BoxDecoration(
+                color: constants.WHITE,
+                shape: BoxShape.circle,
+                boxShadow: [
+                  BoxShadow(
+                      blurRadius: 100,
+                      color: Colors.grey.shade400,
+                      spreadRadius: -4)
+                ]),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text(
+                  "10 days until period starts",
+                  style: TextStyle(
+                    fontFamily: "Metropolis",
+                    fontSize: 30,
+                    color: constants.DARK_GRAY,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Text("ovulation phase",
+                    style: TextStyle(
+                        fontFamily: "Metropolis",
+                        fontSize: 15,
+                        color: Colors.purple.shade400))
+              ],
             ),
-            painter: InnerCircle(radiusFactor: radiusFactor),
-            size: size,
           ))
     ]);
   }
