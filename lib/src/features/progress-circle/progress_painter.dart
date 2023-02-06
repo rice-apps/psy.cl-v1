@@ -2,6 +2,7 @@ import "package:flutter/material.dart";
 import 'dart:math' as math;
 import '../../../assets/constants.dart' as constants;
 import './phase.dart';
+import 'utils.dart' as utils;
 
 class SectionedCircle extends CustomPainter {
   final double radiusFactor;
@@ -22,7 +23,7 @@ class SectionedCircle extends CustomPainter {
     // Draw phase arcs
     phases.forEach((phase) {
       phase.draw(canvas, circleBounds,
-          currentDay >= phase.startDay && currentDay < phase.endDay);
+          utils.isInArc(phase.startDay, phase.endDay, currentDay, 28));
     });
   }
 

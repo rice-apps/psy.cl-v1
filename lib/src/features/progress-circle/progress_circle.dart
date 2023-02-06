@@ -3,6 +3,7 @@ import 'progress_painter.dart';
 import '../../../assets/constants.dart' as constants;
 import './phase.dart';
 import 'dart:math' as math;
+import 'utils.dart' as utils;
 
 class ProgressCircle extends StatefulWidget {
   const ProgressCircle({super.key});
@@ -13,15 +14,21 @@ class ProgressCircle extends StatefulWidget {
 
 class _ProgressCircle extends State<ProgressCircle> {
   // Hard-coded; fetch user value
-  int currentDay = 19;
+  int currentDay = 21;
+  int cycleLength = 28;
 
   // Hard-coded; populate this list with actual user data
   List<Phase> phases = [
-    Phase(0, 7, constants.PERIOD),
-    Phase(7, 12, constants.FOLLICULAR),
-    Phase(12, 19, constants.OVULATION),
-    Phase(19, 28, constants.LUTEAL)
+    Phase('period', 1, 8, constants.PERIOD),
+    Phase('follicular', 8, 12, constants.FOLLICULAR),
+    Phase('ovulation', 12, 19, constants.OVULATION),
+    Phase('luteal', 19, 1, constants.LUTEAL)
   ];
+
+  late Phase periodPhase =
+      phases.firstWhere((element) => element.name == 'period');
+  late Phase currentPhase = phases.firstWhere((element) =>
+      utils.isInArc(element.startDay, element.endDay, currentDay, cycleLength));
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +61,7 @@ class _ProgressCircle extends State<ProgressCircle> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "10 days until period starts",
+              createInnerText(),
               style: TextStyle(
                   fontFamily: "Metropolis",
                   fontSize: 30,
@@ -64,7 +71,7 @@ class _ProgressCircle extends State<ProgressCircle> {
             const SizedBox(
               height: 10,
             ),
-            Text("ovulation phase",
+            Text("${currentPhase.name} phase",
                 style: TextStyle(
                     fontFamily: "Metropolis",
                     fontSize: 15,
@@ -73,5 +80,14 @@ class _ProgressCircle extends State<ProgressCircle> {
         ),
       )
     ]);
+  }
+
+  String createInnerText() {
+    if (utils.isInArc(
+        periodPhase.startDay, periodPhase.endDay, currentDay, cycleLength)) {
+      return '${utils.getDistance(currentDay, periodPhase.endDay, cycleLength)} days until period ends';
+    } else {
+      return '${utils.getDistance(currentDay, periodPhase.startDay, cycleLength)} days until period starts';
+    }
   }
 }
