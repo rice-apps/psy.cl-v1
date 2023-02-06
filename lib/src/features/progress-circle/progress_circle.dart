@@ -14,7 +14,7 @@ class ProgressCircle extends StatefulWidget {
 
 class _ProgressCircle extends State<ProgressCircle> {
   // Hard-coded; fetch user value
-  int currentDay = 1;
+  int currentDay = 17;
   int cycleLength = 28;
 
   // Hard-coded; populate this list with actual user data
@@ -59,10 +59,11 @@ class _ProgressCircle extends State<ProgressCircle> {
     final shortSize = MediaQuery.of(context).size.shortestSide;
     final size = Size(shortSize, shortSize);
     const radiusFactor = 0.4;
+    final radius = shortSize * radiusFactor;
     return Stack(alignment: Alignment.center, children: [
       CustomPaint(
         painter: SectionedCircle(
-            phases: phases, currentDay: currentDay, radiusFactor: radiusFactor),
+            phases: phases, currentDay: currentDay, radius: radius),
         size: size,
         isComplex: true,
       ),
@@ -99,10 +100,39 @@ class _ProgressCircle extends State<ProgressCircle> {
                 style: TextStyle(
                     fontFamily: "Metropolis",
                     fontSize: 15,
-                    color: Colors.purple.shade300))
+                    color: currentPhase.activeColor))
           ],
         ),
-      )
+      ),
+      Positioned(
+          child: Container(
+            padding: EdgeInsets.all(10),
+            alignment: Alignment.center,
+            height: radius * 0.4,
+            width: radius * 0.4,
+            decoration: BoxDecoration(
+                color: constants.white,
+                shape: BoxShape.circle,
+                boxShadow: [
+                  BoxShadow(
+                      blurRadius: 20,
+                      color: Colors.grey.shade800,
+                      spreadRadius: -8)
+                ]),
+            child: Text(
+              'day ${currentDay}',
+              style: TextStyle(
+                  fontFamily: 'Metropolis',
+                  fontSize: 15,
+                  color: currentPhase.activeColor),
+              textAlign: TextAlign.center,
+            ),
+          ),
+          left: radius * math.cos(utils.toRadians(currentDay, cycleLength)) +
+              radius,
+          top: radius * math.sin(utils.toRadians(currentDay, cycleLength)) +
+              radius +
+              10)
     ]);
   }
 
