@@ -14,15 +14,39 @@ class ProgressCircle extends StatefulWidget {
 
 class _ProgressCircle extends State<ProgressCircle> {
   // Hard-coded; fetch user value
-  int currentDay = 17;
+  int currentDay = 1;
   int cycleLength = 28;
 
   // Hard-coded; populate this list with actual user data
-  List<Phase> phases = [
-    Phase('period', 1, 8, constants.period, constants.fadedPeriod),
-    Phase('follicular', 8, 12, constants.follicular, constants.fadedFollicular),
-    Phase('ovulation', 12, 19, constants.ovulation, constants.fadedOvulation),
-    Phase('luteal', 19, 1, constants.luteal, constants.fadedLuteal)
+  late List<Phase> phases = [
+    Phase(
+        name: 'period',
+        startDay: 1,
+        endDay: 8,
+        circumference: cycleLength,
+        activeColor: constants.period,
+        inactiveColor: constants.fadedPeriod),
+    Phase(
+        name: 'follicular',
+        startDay: 8,
+        endDay: 14,
+        circumference: cycleLength,
+        activeColor: constants.follicular,
+        inactiveColor: constants.fadedFollicular),
+    Phase(
+        name: 'ovulation',
+        startDay: 14,
+        endDay: 20,
+        circumference: cycleLength,
+        activeColor: constants.ovulation,
+        inactiveColor: constants.fadedOvulation),
+    Phase(
+        name: 'luteal',
+        startDay: 20,
+        endDay: 1,
+        circumference: cycleLength,
+        activeColor: constants.luteal,
+        inactiveColor: constants.fadedLuteal),
   ];
 
   late Phase periodPhase =
@@ -44,8 +68,8 @@ class _ProgressCircle extends State<ProgressCircle> {
       ),
       Container(
         alignment: Alignment.center,
-        height: size.height * radiusFactor * 1.45,
-        width: size.width * radiusFactor * 1.45,
+        height: size.height * 0.6,
+        width: size.width * 0.6,
         padding: const EdgeInsets.all(15),
         decoration: BoxDecoration(
             color: constants.white,

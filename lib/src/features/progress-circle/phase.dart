@@ -1,6 +1,6 @@
 import 'dart:math' as math;
 import '../../../assets/constants.dart' as constants;
-
+import 'utils.dart' as utils;
 import 'package:flutter/material.dart';
 
 /// Represents a section on the progress circle
@@ -8,6 +8,7 @@ class Phase {
   String name;
   int startDay;
   int endDay;
+  int circumference;
   Color activeColor;
   Color inactiveColor;
   Paint paint = Paint();
@@ -15,18 +16,21 @@ class Phase {
   double sweepRadians = 0;
 
   /// Creates a Phase ranging from [startDay] (inclusive) to [endDay] (exclusive).
-  Phase(this.name, this.startDay, this.endDay, this.activeColor,
-      this.inactiveColor) {
+  Phase(
+      {required this.name,
+      required this.startDay,
+      required this.endDay,
+      required this.circumference,
+      required this.activeColor,
+      required this.inactiveColor}) {
     paint = Paint()
       ..style = PaintingStyle.stroke
       ..strokeWidth = constants.strokeWidth
       ..strokeCap = StrokeCap.round;
-    startRadians = toRadians(startDay);
-    sweepRadians = (toRadians(endDay) - toRadians(startDay)) % (2 * math.pi);
-  }
-
-  double toRadians(int days) {
-    return 2 * math.pi * (days / 28) - math.pi / 2;
+    startRadians = utils.toRadians(startDay, circumference);
+    sweepRadians = (utils.toRadians(endDay, circumference) -
+            utils.toRadians(startDay, circumference)) %
+        (2 * math.pi);
   }
 
   void draw(Canvas canvas, Rect rect, bool selected) {
