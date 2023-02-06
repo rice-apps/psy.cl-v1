@@ -14,15 +14,16 @@ class ProgressCircle extends StatefulWidget {
 
 class _ProgressCircle extends State<ProgressCircle> {
   // Hard-coded; fetch user value
-  int currentDay = 21;
+  int currentDay = 17;
   int cycleLength = 28;
 
   // Hard-coded; populate this list with actual user data
   List<Phase> phases = [
-    Phase('period', 1, 8, constants.PERIOD),
-    Phase('follicular', 8, 12, constants.FOLLICULAR),
-    Phase('ovulation', 12, 19, constants.OVULATION),
-    Phase('luteal', 19, 1, constants.LUTEAL)
+    Phase('period', 1, 8, constants.PERIOD, constants.FADED_PERIOD),
+    Phase(
+        'follicular', 8, 12, constants.FOLLICULAR, constants.FADED_FOLLICULAR),
+    Phase('ovulation', 12, 19, constants.OVULATION, constants.FADED_OVULATION),
+    Phase('luteal', 19, 1, constants.LUTEAL, constants.FADED_LUTEAL)
   ];
 
   late Phase periodPhase =

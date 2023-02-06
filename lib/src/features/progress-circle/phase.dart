@@ -8,15 +8,16 @@ class Phase {
   String name;
   int startDay;
   int endDay;
-  Color color;
+  Color activeColor;
+  Color inactiveColor;
   Paint paint = Paint();
   double startRadians = 0;
   double sweepRadians = 0;
 
   /// Creates a Phase ranging from [startDay] (inclusive) to [endDay] (exclusive).
-  Phase(this.name, this.startDay, this.endDay, this.color) {
+  Phase(this.name, this.startDay, this.endDay, this.activeColor,
+      this.inactiveColor) {
     paint = Paint()
-      ..color = color
       ..style = PaintingStyle.stroke
       ..strokeWidth = constants.STROKE_WIDTH
       ..strokeCap = StrokeCap.round;
@@ -29,7 +30,8 @@ class Phase {
   }
 
   void draw(Canvas canvas, Rect rect, bool selected) {
-    canvas.drawArc(rect, startRadians, sweepRadians, false, paint);
+    canvas.drawArc(rect, startRadians, sweepRadians, false,
+        paint..color = selected ? activeColor : inactiveColor);
     if (selected) {
       canvas.drawArc(rect, startRadians, sweepRadians, false,
           paint..maskFilter = MaskFilter.blur(BlurStyle.outer, 10));
