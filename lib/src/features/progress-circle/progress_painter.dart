@@ -5,14 +5,13 @@ import './phase.dart';
 
 class SectionedCircle extends CustomPainter {
   final double radiusFactor;
-  SectionedCircle({required this.radiusFactor});
+  final List<Phase> phases;
+  final int currentDay;
 
-  List<Phase> phases = [
-    Phase(0, 7, constants.PERIOD),
-    Phase(7, 12, constants.FOLLICULAR),
-    Phase(12, 19, constants.OVULATION),
-    Phase(19, 28, constants.LUTEAL)
-  ];
+  SectionedCircle(
+      {required this.phases,
+      required this.radiusFactor,
+      required this.currentDay});
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -22,11 +21,11 @@ class SectionedCircle extends CustomPainter {
 
     // Draw phase arcs
     phases.forEach((phase) {
-      canvas.drawArc(circleBounds, phase.startRadians, phase.sweepRadians,
-          false, phase.paint);
+      phase.draw(canvas, circleBounds,
+          currentDay >= phase.startDay && currentDay < phase.endDay);
     });
   }
 
   @override
-  bool shouldRepaint(SectionedCircle oldDelegate) => false;
+  bool shouldRepaint(SectionedCircle oldDelegate) => true;
 }

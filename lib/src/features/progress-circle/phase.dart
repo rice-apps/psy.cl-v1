@@ -25,4 +25,12 @@ class Phase {
   double toRadians(int days) {
     return 2 * math.pi * (days / 28) - math.pi / 2;
   }
+
+  void draw(Canvas canvas, Rect rect, bool selected) {
+    canvas.drawArc(rect, startRadians, sweepRadians, false, paint);
+    if (selected) {
+      canvas.drawArc(rect, startRadians, sweepRadians, false,
+          paint..maskFilter = MaskFilter.blur(BlurStyle.outer, 10));
+    }
+  }
 }
