@@ -19,7 +19,7 @@ class Phase {
       this.inactiveColor) {
     paint = Paint()
       ..style = PaintingStyle.stroke
-      ..strokeWidth = constants.STROKE_WIDTH
+      ..strokeWidth = constants.strokeWidth
       ..strokeCap = StrokeCap.round;
     startRadians = toRadians(startDay);
     sweepRadians = (toRadians(endDay) - toRadians(startDay)) % (2 * math.pi);

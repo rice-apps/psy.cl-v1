@@ -46,9 +46,9 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     final panelHeightOpen =
-        MediaQuery.of(context).size.height * constants.MAX_PANEL_HEIGHT;
+        MediaQuery.of(context).size.height * constants.maxPanelHeight;
     final panelHeightClosed =
-        MediaQuery.of(context).size.height * constants.MIN_PANEL_HEIGHT;
+        MediaQuery.of(context).size.height * constants.minPanelHeight;
 
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
@@ -65,7 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         borderRadius: const BorderRadius.vertical(top: Radius.circular(30)),
         boxShadow: const [
-          BoxShadow(blurRadius: 8.0, color: constants.DARK_GRAY)
+          BoxShadow(blurRadius: 8.0, color: constants.darkGray)
         ],
       ),
     );

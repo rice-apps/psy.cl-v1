@@ -19,11 +19,10 @@ class _ProgressCircle extends State<ProgressCircle> {
 
   // Hard-coded; populate this list with actual user data
   List<Phase> phases = [
-    Phase('period', 1, 8, constants.PERIOD, constants.FADED_PERIOD),
-    Phase(
-        'follicular', 8, 12, constants.FOLLICULAR, constants.FADED_FOLLICULAR),
-    Phase('ovulation', 12, 19, constants.OVULATION, constants.FADED_OVULATION),
-    Phase('luteal', 19, 1, constants.LUTEAL, constants.FADED_LUTEAL)
+    Phase('period', 1, 8, constants.period, constants.fadedPeriod),
+    Phase('follicular', 8, 12, constants.follicular, constants.fadedFollicular),
+    Phase('ovulation', 12, 19, constants.ovulation, constants.fadedOvulation),
+    Phase('luteal', 19, 1, constants.luteal, constants.fadedLuteal)
   ];
 
   late Phase periodPhase =
@@ -49,7 +48,7 @@ class _ProgressCircle extends State<ProgressCircle> {
         width: size.width * radiusFactor * 1.45,
         padding: const EdgeInsets.all(15),
         decoration: BoxDecoration(
-            color: constants.WHITE,
+            color: constants.white,
             shape: BoxShape.circle,
             boxShadow: [
               BoxShadow(

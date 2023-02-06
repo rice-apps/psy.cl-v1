@@ -37,15 +37,15 @@ class PagedBackground extends StatelessWidget {
           count: pageViewChildren.length,
           axisDirection: Axis.horizontal,
           effect: const ScaleEffect(
-            activeDotColor: constants.DARK_GRAY,
+            activeDotColor: constants.darkGray,
             dotHeight: 10,
-            dotColor: constants.GRAY,
+            dotColor: constants.gray,
             dotWidth: 10,
           ),
         ),
         SizedBox(
           height:
-              MediaQuery.of(context).size.height * constants.MIN_PANEL_HEIGHT +
+              MediaQuery.of(context).size.height * constants.minPanelHeight +
                   10,
         )
       ],

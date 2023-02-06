@@ -6,7 +6,7 @@ class BackgroundColorPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        backgroundColor: constants.WHITE,
+        backgroundColor: constants.white,
         //backgroundColor: constants.WHITE,
         body: Container(
           decoration: const BoxDecoration(
