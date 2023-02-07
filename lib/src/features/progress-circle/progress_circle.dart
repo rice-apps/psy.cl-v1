@@ -122,7 +122,8 @@ class _ProgressCircle extends State<ProgressCircle> {
       ),
       Positioned(
           left: radius * math.cos(utils.toRadians(_currentDay, cycleLength)) +
-              radius,
+              radius +
+              10,
           top: radius * math.sin(utils.toRadians(_currentDay, cycleLength)) +
               radius +
               10,
