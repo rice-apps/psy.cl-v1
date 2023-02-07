@@ -14,7 +14,7 @@ class SectionedCircle extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    Offset offset = Offset(size.height / 2, size.width / 2);
+    Offset offset = size.center(Offset(0, 0));
     Rect circleBounds = Rect.fromCircle(center: offset, radius: radius);
 
     // Draw phase arcs
@@ -25,5 +25,5 @@ class SectionedCircle extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(SectionedCircle oldDelegate) => true;
+  bool shouldRepaint(SectionedCircle oldDelegate) => false;
 }
