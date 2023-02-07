@@ -34,11 +34,14 @@ class Phase {
   }
 
   void draw(Canvas canvas, Rect rect, bool selected) {
-    canvas.drawArc(rect, startRadians, sweepRadians, false,
-        paint..color = selected ? activeColor : inactiveColor);
-    if (selected) {
-      canvas.drawArc(rect, startRadians, sweepRadians, false,
-          paint..maskFilter = MaskFilter.blur(BlurStyle.outer, 10));
-    }
+    canvas.drawArc(
+      rect,
+      startRadians,
+      sweepRadians,
+      false,
+      paint
+        ..color = selected ? activeColor : inactiveColor
+        ..maskFilter = MaskFilter.blur(BlurStyle.solid, selected ? 10 : 0),
+    );
   }
 }

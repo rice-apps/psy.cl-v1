@@ -25,5 +25,5 @@ class SectionedCircle extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(SectionedCircle oldDelegate) => false;
+  bool shouldRepaint(SectionedCircle oldDelegate) => true;
 }
