@@ -52,8 +52,7 @@ class _ProgressCircle extends State<ProgressCircle> {
 
   late Phase periodPhase =
       phases.firstWhere((element) => element.name == 'period');
-  late Phase currentPhase = phases.firstWhere((element) => utils.isInArc(
-      element.startDay, element.endDay, _currentDay, cycleLength));
+  late Phase _currentPhase = getCurrentPhase(phases);
 
   @override
   void initState() {
@@ -64,6 +63,9 @@ class _ProgressCircle extends State<ProgressCircle> {
         } else {
           _currentDay++;
         }
+
+        _currentPhase = phases.firstWhere((element) => utils.isInArc(
+            element.startDay, element.endDay, _currentDay, cycleLength));
       });
     });
   }
@@ -109,11 +111,11 @@ class _ProgressCircle extends State<ProgressCircle> {
             const SizedBox(
               height: 10,
             ),
-            Text("${currentPhase.name} phase",
+            Text("${_currentPhase.name} phase",
                 style: TextStyle(
                     fontFamily: "Metropolis",
                     fontSize: 15,
-                    color: currentPhase.activeColor))
+                    color: _currentPhase.activeColor))
           ],
         ),
       ),
@@ -137,7 +139,7 @@ class _ProgressCircle extends State<ProgressCircle> {
               style: TextStyle(
                   fontFamily: 'Metropolis',
                   fontSize: 15,
-                  color: currentPhase.activeColor),
+                  color: _currentPhase.activeColor),
               textAlign: TextAlign.center,
             ),
           ),
@@ -167,5 +169,10 @@ class _ProgressCircle extends State<ProgressCircle> {
     } else {
       return '${utils.getDistance(_currentDay, periodPhase.startDay, cycleLength)} days until period starts';
     }
+  }
+
+  Phase getCurrentPhase(List<Phase> phases) {
+    return phases.firstWhere((element) => utils.isInArc(
+        element.startDay, element.endDay, _currentDay, cycleLength));
   }
 }
