@@ -65,8 +65,7 @@ class _ProgressCircle extends State<ProgressCircle> {
           _currentDay++;
         }
 
-        _currentPhase = phases.firstWhere((element) => utils.isInArc(
-            element.startDay, element.endDay, _currentDay, cycleLength));
+        _currentPhase = getCurrentPhase(phases);
       });
     });
   }
