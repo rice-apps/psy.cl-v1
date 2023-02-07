@@ -4,6 +4,7 @@ import '../../../assets/constants.dart' as constants;
 import './phase.dart';
 import 'dart:math' as math;
 import 'utils.dart' as utils;
+import 'dart:async';
 
 class ProgressCircle extends StatefulWidget {
   const ProgressCircle({super.key});
@@ -14,7 +15,7 @@ class ProgressCircle extends StatefulWidget {
 
 class _ProgressCircle extends State<ProgressCircle> {
   // Hard-coded; fetch user value
-  int currentDay = 17;
+  int _currentDay = 17;
   int cycleLength = 28;
 
   // Hard-coded; populate this list with actual user data
@@ -51,19 +52,31 @@ class _ProgressCircle extends State<ProgressCircle> {
 
   late Phase periodPhase =
       phases.firstWhere((element) => element.name == 'period');
-  late Phase currentPhase = phases.firstWhere((element) =>
-      utils.isInArc(element.startDay, element.endDay, currentDay, cycleLength));
+  late Phase currentPhase = phases.firstWhere((element) => utils.isInArc(
+      element.startDay, element.endDay, _currentDay, cycleLength));
+
+  @override
+  void initState() {
+    Timer _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+      setState(() {
+        if (_currentDay == cycleLength) {
+          _currentDay = 1;
+        } else {
+          _currentDay++;
+        }
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     final shortSize = MediaQuery.of(context).size.shortestSide;
     final size = Size(shortSize, shortSize);
-    const radiusFactor = 0.4;
-    final radius = shortSize * radiusFactor;
+    final radius = shortSize * 0.4;
     return Stack(alignment: Alignment.center, children: [
       CustomPaint(
         painter: SectionedCircle(
-            phases: phases, currentDay: currentDay, radius: radius),
+            phases: phases, currentDay: _currentDay, radius: radius),
         size: size,
         isComplex: true,
       ),
@@ -120,7 +133,7 @@ class _ProgressCircle extends State<ProgressCircle> {
                       spreadRadius: -8)
                 ]),
             child: Text(
-              'day ${currentDay}',
+              'day ${_currentDay}',
               style: TextStyle(
                   fontFamily: 'Metropolis',
                   fontSize: 15,
@@ -128,20 +141,31 @@ class _ProgressCircle extends State<ProgressCircle> {
               textAlign: TextAlign.center,
             ),
           ),
-          left: radius * math.cos(utils.toRadians(currentDay, cycleLength)) +
+          left: radius * math.cos(utils.toRadians(_currentDay, cycleLength)) +
               radius,
-          top: radius * math.sin(utils.toRadians(currentDay, cycleLength)) +
+          top: radius * math.sin(utils.toRadians(_currentDay, cycleLength)) +
               radius +
               10)
     ]);
   }
 
+  late Timer timer = Timer(const Duration(seconds: 1), () {
+    setState(() {
+      if (_currentDay == cycleLength) {
+        _currentDay = 1;
+      } else {
+        _currentDay++;
+      }
+      print(_currentDay);
+    });
+  });
+
   String createInnerText() {
     if (utils.isInArc(
-        periodPhase.startDay, periodPhase.endDay, currentDay, cycleLength)) {
-      return '${utils.getDistance(currentDay, periodPhase.endDay, cycleLength)} days until period ends';
+        periodPhase.startDay, periodPhase.endDay, _currentDay, cycleLength)) {
+      return '${utils.getDistance(_currentDay, periodPhase.endDay, cycleLength)} days until period ends';
     } else {
-      return '${utils.getDistance(currentDay, periodPhase.startDay, cycleLength)} days until period starts';
+      return '${utils.getDistance(_currentDay, periodPhase.startDay, cycleLength)} days until period starts';
     }
   }
 }
