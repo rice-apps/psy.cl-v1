@@ -56,7 +56,8 @@ class _ProgressCircle extends State<ProgressCircle> {
 
   @override
   void initState() {
-    Timer _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+    super.initState();
+    Timer _timer = Timer.periodic(const Duration(milliseconds: 500), (timer) {
       setState(() {
         if (_currentDay == cycleLength) {
           _currentDay = 1;
@@ -120,8 +121,13 @@ class _ProgressCircle extends State<ProgressCircle> {
         ),
       ),
       Positioned(
+          left: radius * math.cos(utils.toRadians(_currentDay, cycleLength)) +
+              radius,
+          top: radius * math.sin(utils.toRadians(_currentDay, cycleLength)) +
+              radius +
+              10,
           child: Container(
-            padding: EdgeInsets.all(10),
+            padding: const EdgeInsets.all(10),
             alignment: Alignment.center,
             height: radius * 0.4,
             width: radius * 0.4,
@@ -135,19 +141,14 @@ class _ProgressCircle extends State<ProgressCircle> {
                       spreadRadius: -8)
                 ]),
             child: Text(
-              'day ${_currentDay}',
+              'day $_currentDay',
               style: TextStyle(
                   fontFamily: 'Metropolis',
                   fontSize: 15,
                   color: _currentPhase.activeColor),
               textAlign: TextAlign.center,
             ),
-          ),
-          left: radius * math.cos(utils.toRadians(_currentDay, cycleLength)) +
-              radius,
-          top: radius * math.sin(utils.toRadians(_currentDay, cycleLength)) +
-              radius +
-              10)
+          ))
     ]);
   }
 
@@ -158,7 +159,6 @@ class _ProgressCircle extends State<ProgressCircle> {
       } else {
         _currentDay++;
       }
-      print(_currentDay);
     });
   });
 
