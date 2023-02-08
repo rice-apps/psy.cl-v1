@@ -58,7 +58,7 @@ class _ProgressCircle extends State<ProgressCircle> {
   @override
   void initState() {
     super.initState();
-    Timer _timer = Timer.periodic(const Duration(milliseconds: 100), (timer) {
+    Timer _timer = Timer.periodic(const Duration(milliseconds: 10), (timer) {
       setState(() {
         _angle = (_angle + 0.01) % (2 * math.pi);
         _currentDay = utils.toDays(_angle, cycleLength);
@@ -120,7 +120,7 @@ class _ProgressCircle extends State<ProgressCircle> {
           left: radius * math.cos(_angle) + radius + 10,
           top: radius * math.sin(_angle) + radius + 10,
           child: Container(
-            padding: const EdgeInsets.all(10),
+            padding: const EdgeInsets.all(9),
             alignment: Alignment.center,
             height: radius * 0.4,
             width: radius * 0.4,
