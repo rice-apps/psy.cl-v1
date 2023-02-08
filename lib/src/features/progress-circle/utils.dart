@@ -14,7 +14,15 @@ int getDistance(int start, int end, int circumference) {
   return (end - start) % circumference;
 }
 
-/// Returns the radian value of [days] on a circle with [circumference] circumference where 12 o'clock = 0 rad
-double toRadians(int days, int circumference) {
-  return 2 * math.pi * (days / circumference) - math.pi / 2;
+/// Returns the radian value of [day] on a circle with [circumference] circumference where 12 o'clock = 0 rad
+double toRadians(int day, int circumference) {
+  return 2 * math.pi * (day / circumference) - math.pi / 2;
+}
+
+/// Returns the day value at [angle] (radians) on a circle with given [circumference]
+int toDays(double angle, int circumference) {
+  return (((circumference * ((angle + math.pi / 2) / (2 * math.pi)) - 1)) %
+              circumference +
+          1)
+      .toInt();
 }

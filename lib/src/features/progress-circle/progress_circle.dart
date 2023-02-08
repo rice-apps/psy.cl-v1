@@ -14,7 +14,8 @@ class ProgressCircle extends StatefulWidget {
 }
 
 class _ProgressCircle extends State<ProgressCircle> {
-  // Hard-coded; fetch user value
+  // Hard-coded; fetch user value, set initial _angle to toRadians(_currentDay, cycleLength)
+  double _angle = -math.pi / 2;
   int _currentDay = 17;
   int cycleLength = 28;
 
@@ -57,14 +58,10 @@ class _ProgressCircle extends State<ProgressCircle> {
   @override
   void initState() {
     super.initState();
-    Timer _timer = Timer.periodic(const Duration(milliseconds: 500), (timer) {
+    Timer _timer = Timer.periodic(const Duration(milliseconds: 100), (timer) {
       setState(() {
-        if (_currentDay == cycleLength) {
-          _currentDay = 1;
-        } else {
-          _currentDay++;
-        }
-
+        _angle = (_angle + 0.01) % (2 * math.pi);
+        _currentDay = utils.toDays(_angle, cycleLength);
         _currentPhase = getCurrentPhase(phases);
       });
     });
@@ -120,12 +117,8 @@ class _ProgressCircle extends State<ProgressCircle> {
         ),
       ),
       Positioned(
-          left: radius * math.cos(utils.toRadians(_currentDay, cycleLength)) +
-              radius +
-              10,
-          top: radius * math.sin(utils.toRadians(_currentDay, cycleLength)) +
-              radius +
-              10,
+          left: radius * math.cos(_angle) + radius + 10,
+          top: radius * math.sin(_angle) + radius + 10,
           child: Container(
             padding: const EdgeInsets.all(10),
             alignment: Alignment.center,
@@ -141,7 +134,7 @@ class _ProgressCircle extends State<ProgressCircle> {
                       spreadRadius: -8)
                 ]),
             child: Text(
-              'day $_currentDay',
+              'day ${utils.toDays(_angle, cycleLength)}',
               style: TextStyle(
                   fontFamily: 'Metropolis',
                   fontSize: 15,
