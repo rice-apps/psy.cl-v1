@@ -14,9 +14,9 @@ class ProgressCircle extends StatefulWidget {
 }
 
 class _ProgressCircle extends State<ProgressCircle> {
-  // Hard-coded; fetch user value, set initial _angle to toRadians(_currentDay, cycleLength)
+  // Hard-coded; fetch user values, set initial _angle to toRadians(_currentDay, cycleLength)
   double _angle = -math.pi / 2;
-  int _currentDay = 17;
+  late int _currentDay;
   int cycleLength = 28;
 
   // Hard-coded; populate this list with actual user data
@@ -58,13 +58,16 @@ class _ProgressCircle extends State<ProgressCircle> {
   @override
   void initState() {
     super.initState();
-    Timer _timer = Timer.periodic(const Duration(milliseconds: 10), (timer) {
-      setState(() {
-        _angle = (_angle + 0.01) % (2 * math.pi);
-        _currentDay = utils.toDays(_angle, cycleLength);
-        _currentPhase = getCurrentPhase(phases);
-      });
-    });
+    _angle = -math.pi / 2;
+    _currentDay = utils.toDays(_angle, cycleLength);
+    _currentPhase = getCurrentPhase(phases);
+    // Timer _timer = Timer.periodic(const Duration(milliseconds: 10), (timer) {
+    //   setState(() {
+    //     _angle = (_angle + 0.01) % (2 * math.pi);
+    //     _currentDay = utils.toDays(_angle, cycleLength);
+    //     _currentPhase = getCurrentPhase(phases);
+    //   });
+    // });
   }
 
   @override
@@ -119,29 +122,31 @@ class _ProgressCircle extends State<ProgressCircle> {
       Positioned(
           left: radius * math.cos(_angle) + radius + 10,
           top: radius * math.sin(_angle) + radius + 10,
-          child: Container(
-            padding: const EdgeInsets.all(9),
-            alignment: Alignment.center,
-            height: radius * 0.4,
-            width: radius * 0.4,
-            decoration: BoxDecoration(
-                color: constants.white,
-                shape: BoxShape.circle,
-                boxShadow: [
-                  BoxShadow(
-                      blurRadius: 20,
-                      color: Colors.grey.shade800,
-                      spreadRadius: -8)
-                ]),
-            child: Text(
-              'day ${utils.toDays(_angle, cycleLength)}',
-              style: TextStyle(
-                  fontFamily: 'Metropolis',
-                  fontSize: 15,
-                  color: _currentPhase.activeColor),
-              textAlign: TextAlign.center,
-            ),
-          ))
+          child: GestureDetector(
+              onPanUpdate: _onPanUpdate,
+              child: Container(
+                padding: const EdgeInsets.all(9),
+                alignment: Alignment.center,
+                height: radius * 0.4,
+                width: radius * 0.4,
+                decoration: BoxDecoration(
+                    color: constants.white,
+                    shape: BoxShape.circle,
+                    boxShadow: [
+                      BoxShadow(
+                          blurRadius: 20,
+                          color: Colors.grey.shade800,
+                          spreadRadius: -8)
+                    ]),
+                child: Text(
+                  'day ${utils.toDays(_angle, cycleLength)}',
+                  style: TextStyle(
+                      fontFamily: 'Metropolis',
+                      fontSize: 15,
+                      color: _currentPhase.activeColor),
+                  textAlign: TextAlign.center,
+                ),
+              )))
     ]);
   }
 
@@ -168,4 +173,6 @@ class _ProgressCircle extends State<ProgressCircle> {
     return phases.firstWhere((element) => utils.isInArc(
         element.startDay, element.endDay, _currentDay, cycleLength));
   }
+
+  void _onPanUpdate(DragUpdateDetails details) {}
 }
