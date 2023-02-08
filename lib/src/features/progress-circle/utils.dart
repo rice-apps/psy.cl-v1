@@ -1,4 +1,5 @@
 import 'dart:math' as math;
+import 'vector.dart';
 
 /// Returns a boolean representing whether or not [loc] falls between [start] and [end] on a circle with [circumference] circumference
 bool isInArc(int start, int end, int loc, int circumference) {
@@ -25,4 +26,9 @@ int toDays(double angle, int circumference) {
               circumference +
           1)
       .toInt();
+}
+
+/// Returns the determinant of matrix with [v1] and [v2] as first and second columns respectively
+double determinant(Vector2 v1, Vector2 v2) {
+  return v1.x * v2.y - v1.y * v2.x;
 }
