@@ -1,5 +1,4 @@
 import 'dart:math' as math;
-import 'vector.dart';
 
 /// Returns a boolean representing whether or not [loc] falls between [start] and [end] on a circle with [circumference] circumference
 bool isInArc(int start, int end, int loc, int circumference) {
@@ -28,7 +27,21 @@ int toDays(double angle, int circumference) {
       .toInt();
 }
 
-/// Returns the determinant of matrix with [v1] and [v2] as first and second columns respectively
-double determinant(Vector2 v1, Vector2 v2) {
-  return v1.x * v2.y - v1.y * v2.x;
+/// Returns the dot product of two n-dimensional vectors
+double dot(List<double> v1, List<double> v2) {
+  assert(v1.length == v2.length);
+  double sum = 0;
+  for (int i = 0; i < v1.length; i++) {
+    sum += v1[i] * v2[i];
+  }
+  return sum;
+}
+
+/// Returns the magnitude of an n-dimensional vector
+double magnitude(List<double> v) {
+  double sum = 0;
+  for (int i = 0; i < v.length; i++) {
+    sum += math.pow(v[i], 2);
+  }
+  return math.sqrt(sum);
 }

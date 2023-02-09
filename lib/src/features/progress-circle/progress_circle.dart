@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'progress_painter.dart';
 import '../../../assets/constants.dart' as constants;
-import './phase.dart';
+import 'phase.dart';
 import 'dart:math' as math;
 import 'utils.dart' as utils;
 import 'dart:async';
@@ -123,7 +123,10 @@ class _ProgressCircle extends State<ProgressCircle> {
           left: radius * math.cos(_angle) + radius + 10,
           top: radius * math.sin(_angle) + radius + 10,
           child: GestureDetector(
-              onPanUpdate: _onPanUpdate,
+              behavior: HitTestBehavior.opaque,
+              onPanUpdate: (details) {
+                _onPanUpdate(details, size, radius);
+              },
               child: Container(
                 padding: const EdgeInsets.all(9),
                 alignment: Alignment.center,
@@ -150,16 +153,6 @@ class _ProgressCircle extends State<ProgressCircle> {
     ]);
   }
 
-  late Timer timer = Timer(const Duration(seconds: 1), () {
-    setState(() {
-      if (_currentDay == cycleLength) {
-        _currentDay = 1;
-      } else {
-        _currentDay++;
-      }
-    });
-  });
-
   String createInnerText() {
     if (utils.isInArc(
         periodPhase.startDay, periodPhase.endDay, _currentDay, cycleLength)) {
@@ -174,5 +167,16 @@ class _ProgressCircle extends State<ProgressCircle> {
         element.startDay, element.endDay, _currentDay, cycleLength));
   }
 
-  void _onPanUpdate(DragUpdateDetails details) {}
+  void _onPanUpdate(DragUpdateDetails details, Size size, double radius) {
+    double posX = details.globalPosition.dx;
+    double posY = details.globalPosition.dy;
+    double dx = posX - size.width / 2;
+    double dy = posY - size.height / 2;
+    double newAngle = math.atan2(dy, dx);
+    setState(() {
+      _angle = newAngle;
+      _currentDay = utils.toDays(_angle, cycleLength);
+      _currentPhase = getCurrentPhase(phases);
+    });
+  }
 }
