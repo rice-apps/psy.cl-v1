@@ -129,17 +129,17 @@ class _ProgressCircle extends State<ProgressCircle> {
             width: radius * (_heldDown ? 0.45 : 0.40),
             child: GestureDetector(
                 behavior: HitTestBehavior.opaque,
-                onPanStart: (details) {
+                onLongPressStart: (details) {
                   setState(() {
                     _heldDown = true;
                   });
                 },
-                onPanEnd: (details) {
+                onLongPressEnd: (details) {
                   setState(() {
                     _heldDown = false;
                   });
                 },
-                onPanUpdate: (details) {
+                onLongPressMoveUpdate: (details) {
                   _onPanUpdate(details, size, radius);
                 },
                 child: Container(
@@ -181,7 +181,8 @@ class _ProgressCircle extends State<ProgressCircle> {
         element.startDay, element.endDay, _currentDay, cycleLength));
   }
 
-  void _onPanUpdate(DragUpdateDetails details, Size size, double radius) {
+  void _onPanUpdate(
+      LongPressMoveUpdateDetails details, Size size, double radius) {
     double posX = details.globalPosition.dx;
     double posY = details.globalPosition.dy;
     double dx = posX - size.width / 2;
