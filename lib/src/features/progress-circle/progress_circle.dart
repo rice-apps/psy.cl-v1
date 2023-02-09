@@ -121,10 +121,10 @@ class _ProgressCircle extends State<ProgressCircle> {
         ),
       ),
       Positioned(
-          left: radius * math.cos(_angle) + radius + 10,
-          top: radius * math.sin(_angle) + radius + 10,
+          left: radius * math.cos(_angle) + radius + 5,
+          top: radius * math.sin(_angle) + radius + 5,
           child: AnimatedContainer(
-            duration: const Duration(milliseconds: 150),
+            duration: const Duration(milliseconds: 100),
             height: radius * (_heldDown ? 0.45 : 0.40),
             width: radius * (_heldDown ? 0.45 : 0.40),
             child: GestureDetector(
