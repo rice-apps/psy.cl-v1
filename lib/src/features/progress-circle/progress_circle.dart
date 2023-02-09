@@ -14,6 +14,7 @@ class ProgressCircle extends StatefulWidget {
 }
 
 class _ProgressCircle extends State<ProgressCircle> {
+  bool _heldDown = false;
   // Hard-coded; fetch user values, set initial _angle to toRadians(_currentDay, cycleLength)
   double _angle = -math.pi / 2;
   late int _currentDay;
@@ -122,34 +123,47 @@ class _ProgressCircle extends State<ProgressCircle> {
       Positioned(
           left: radius * math.cos(_angle) + radius + 10,
           top: radius * math.sin(_angle) + radius + 10,
-          child: GestureDetector(
-              behavior: HitTestBehavior.opaque,
-              onPanUpdate: (details) {
-                _onPanUpdate(details, size, radius);
-              },
-              child: Container(
-                padding: const EdgeInsets.all(9),
-                alignment: Alignment.center,
-                height: radius * 0.4,
-                width: radius * 0.4,
-                decoration: BoxDecoration(
-                    color: constants.white,
-                    shape: BoxShape.circle,
-                    boxShadow: [
-                      BoxShadow(
-                          blurRadius: 20,
-                          color: Colors.grey.shade800,
-                          spreadRadius: -8)
-                    ]),
-                child: Text(
-                  'day ${utils.toDays(_angle, cycleLength)}',
-                  style: TextStyle(
-                      fontFamily: 'Metropolis',
-                      fontSize: 15,
-                      color: _currentPhase.activeColor),
-                  textAlign: TextAlign.center,
-                ),
-              )))
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 150),
+            height: radius * (_heldDown ? 0.45 : 0.40),
+            width: radius * (_heldDown ? 0.45 : 0.40),
+            child: GestureDetector(
+                behavior: HitTestBehavior.opaque,
+                onPanStart: (details) {
+                  setState(() {
+                    _heldDown = true;
+                  });
+                },
+                onPanEnd: (details) {
+                  setState(() {
+                    _heldDown = false;
+                  });
+                },
+                onPanUpdate: (details) {
+                  _onPanUpdate(details, size, radius);
+                },
+                child: Container(
+                  padding: const EdgeInsets.all(9),
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                      color: constants.white,
+                      shape: BoxShape.circle,
+                      boxShadow: [
+                        BoxShadow(
+                            blurRadius: 20,
+                            color: Colors.grey.shade800,
+                            spreadRadius: -8)
+                      ]),
+                  child: Text(
+                    'day ${utils.toDays(_angle, cycleLength)}',
+                    style: TextStyle(
+                        fontFamily: 'Metropolis',
+                        fontSize: 15,
+                        color: _currentPhase.activeColor),
+                    textAlign: TextAlign.center,
+                  ),
+                )),
+          ))
     ]);
   }
 

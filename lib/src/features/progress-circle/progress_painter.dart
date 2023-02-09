@@ -15,7 +15,6 @@ class SectionedCircle extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     Offset offset = size.center(Offset(0, 0));
-    print(offset);
     Rect circleBounds = Rect.fromCircle(center: offset, radius: radius);
 
     // Draw phase arcs
