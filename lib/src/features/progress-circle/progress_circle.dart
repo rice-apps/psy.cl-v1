@@ -62,13 +62,6 @@ class _ProgressCircle extends State<ProgressCircle> {
     _angle = -math.pi / 2;
     _currentDay = utils.toDays(_angle, cycleLength);
     _currentPhase = getCurrentPhase(phases);
-    // Timer _timer = Timer.periodic(const Duration(milliseconds: 10), (timer) {
-    //   setState(() {
-    //     _angle = (_angle + 0.01) % (2 * math.pi);
-    //     _currentDay = utils.toDays(_angle, cycleLength);
-    //     _currentPhase = getCurrentPhase(phases);
-    //   });
-    // });
   }
 
   @override
@@ -186,6 +179,7 @@ class _ProgressCircle extends State<ProgressCircle> {
     ]);
   }
 
+  /// Returns the text to be displayed by the center circle
   String createInnerText() {
     if (utils.isInArc(
         periodPhase.startDay, periodPhase.endDay, _currentDay, cycleLength)) {
@@ -195,11 +189,13 @@ class _ProgressCircle extends State<ProgressCircle> {
     }
   }
 
+  /// Gets the current phase in the cycle based on the [_currentDay] state
   Phase getCurrentPhase(List<Phase> phases) {
     return phases.firstWhere((element) => utils.isInArc(
         element.startDay, element.endDay, _currentDay, cycleLength));
   }
 
+  /// Updates the angle given the target location [x] and [y], [size] of the context and the [radius] of the circular "track"
   void _updateAngle(double x, double y, Size size, double radius) {
     double dx = x - size.width / 2;
     double dy = y - size.height / 2;
@@ -211,11 +207,13 @@ class _ProgressCircle extends State<ProgressCircle> {
     });
   }
 
+  /// Callback function for GestureDetector's onPanUpdate event to update the current angle
   void _onPanUpdate(DragUpdateDetails details, Size size, double radius) {
     _updateAngle(
         details.globalPosition.dx, details.globalPosition.dy, size, radius);
   }
 
+  /// Callback function for GestureDetector's onLongPressMoveUpdate event to update the current angle
   void _onLongPressMoveUpdate(
       LongPressMoveUpdateDetails details, Size size, double radius) {
     _updateAngle(
