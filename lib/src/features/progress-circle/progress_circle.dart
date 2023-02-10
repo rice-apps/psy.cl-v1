@@ -73,9 +73,13 @@ class _ProgressCircle extends State<ProgressCircle> {
 
   @override
   Widget build(BuildContext context) {
-    final shortSize = MediaQuery.of(context).size.shortestSide;
+    final rawSize = MediaQuery.of(context).size;
+    final shortSize = rawSize.shortestSide;
     final size = Size(shortSize, shortSize);
     final radius = shortSize * 0.4;
+    final baseMiniSize = radius * 0.4;
+    final mutMiniSize = baseMiniSize * (_heldDown ? 1.1 : 1);
+
     return Stack(alignment: Alignment.center, children: [
       CustomPaint(
         painter: SectionedCircle(
@@ -121,14 +125,28 @@ class _ProgressCircle extends State<ProgressCircle> {
         ),
       ),
       Positioned(
-          left: radius * math.cos(_angle) + radius + 5,
-          top: radius * math.sin(_angle) + radius + 5,
+          left: radius * math.cos(_angle) + size.width / 2 - baseMiniSize / 2,
+          top: radius * math.sin(_angle) + size.height / 2 - baseMiniSize / 2,
           child: AnimatedContainer(
+            alignment: Alignment.center,
             duration: const Duration(milliseconds: 100),
-            height: radius * (_heldDown ? 0.45 : 0.40),
-            width: radius * (_heldDown ? 0.45 : 0.40),
+            height: mutMiniSize,
+            width: mutMiniSize,
             child: GestureDetector(
                 behavior: HitTestBehavior.opaque,
+                onPanStart: (details) {
+                  setState(() {
+                    _heldDown = true;
+                  });
+                },
+                onPanEnd: (details) {
+                  setState(() {
+                    _heldDown = false;
+                  });
+                },
+                onPanUpdate: (details) {
+                  _onPanUpdate(details, size, radius);
+                },
                 onLongPressStart: (details) {
                   setState(() {
                     _heldDown = true;
@@ -140,7 +158,7 @@ class _ProgressCircle extends State<ProgressCircle> {
                   });
                 },
                 onLongPressMoveUpdate: (details) {
-                  _onPanUpdate(details, size, radius);
+                  _onLongPressMoveUpdate(details, size, radius);
                 },
                 child: Container(
                   padding: const EdgeInsets.all(9),
@@ -181,17 +199,25 @@ class _ProgressCircle extends State<ProgressCircle> {
         element.startDay, element.endDay, _currentDay, cycleLength));
   }
 
-  void _onPanUpdate(
-      LongPressMoveUpdateDetails details, Size size, double radius) {
-    double posX = details.globalPosition.dx;
-    double posY = details.globalPosition.dy;
-    double dx = posX - size.width / 2;
-    double dy = posY - size.height / 2;
+  void _updateAngle(double x, double y, Size size, double radius) {
+    double dx = x - size.width / 2;
+    double dy = y - size.height / 2;
     double newAngle = math.atan2(dy, dx);
     setState(() {
       _angle = newAngle;
       _currentDay = utils.toDays(_angle, cycleLength);
       _currentPhase = getCurrentPhase(phases);
     });
+  }
+
+  void _onPanUpdate(DragUpdateDetails details, Size size, double radius) {
+    _updateAngle(
+        details.globalPosition.dx, details.globalPosition.dy, size, radius);
+  }
+
+  void _onLongPressMoveUpdate(
+      LongPressMoveUpdateDetails details, Size size, double radius) {
+    _updateAngle(
+        details.globalPosition.dx, details.globalPosition.dy, size, radius);
   }
 }
