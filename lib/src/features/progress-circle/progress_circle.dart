@@ -4,7 +4,6 @@ import '../../../assets/constants.dart' as constants;
 import 'phase.dart';
 import 'dart:math' as math;
 import 'utils.dart' as utils;
-import 'dart:async';
 
 class ProgressCircle extends StatefulWidget {
   const ProgressCircle({super.key});
