@@ -79,6 +79,7 @@ class _ProgressCircle extends State<ProgressCircle> {
     final radius = shortSize * 0.4;
     final baseMiniSize = radius * 0.4;
     final mutMiniSize = baseMiniSize * (_heldDown ? 1.1 : 1);
+    final centerCircleSize = radius * 2 * 0.75;
 
     return Stack(alignment: Alignment.center, children: [
       CustomPaint(
@@ -89,8 +90,8 @@ class _ProgressCircle extends State<ProgressCircle> {
       ),
       Container(
         alignment: Alignment.center,
-        height: size.height * 0.6,
-        width: size.width * 0.6,
+        height: centerCircleSize,
+        width: centerCircleSize,
         padding: const EdgeInsets.all(15),
         decoration: BoxDecoration(
             color: constants.white,
