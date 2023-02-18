@@ -1,0 +1,31 @@
+type AggregateData @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  averageCycleDuration: Int
+  averagePeriodDuration: Int
+  averageSexDrive: Int
+  averageAge: Int
+  averageMood: Int
+  averageEnergy: Int
+  averageBleeding: Int
+  ageRelation: [UserData] @hasMany(indexName: "byAggregateData", fields: ["id"])
+  sexDriveRelation: [UserData] @hasMany(indexName: "byAggregateData", fields: ["id"])
+  moodRelation: [UserData] @hasMany(indexName: "byAggregateData", fields: ["id"])
+  energyRelation: [UserData] @hasMany(indexName: "byAggregateData", fields: ["id"])
+  bleedingRelation: [UserData] @hasMany(indexName: "byAggregateData", fields: ["id"])
+  periodDurationRelation: [UserData] @hasMany(indexName: "byAggregateData", fields: ["id"])
+}
+
+type UserData @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String!
+  height: Float!
+  weight: Int!
+  periodDuration: Int
+  startDateLastPeriod: AWSDate
+  dOB: AWSDate
+  bleeding: [Int]
+  mood: [Int]
+  energyLeve: [Int]
+  sexDrive: [Int]
+  aggregatedataID: ID! @index(name: "byAggregateData")
+}

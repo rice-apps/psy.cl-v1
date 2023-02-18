@@ -52,7 +52,6 @@ dev_dependencies:
   amplify_flutter: ^0.6.0
   amplify_datastore: ^0.6.0
 # amplify_api: ^0.6.0 // UNCOMMENT this line after backend is deployed
-amplify pull --appId d3r3raz2g8ib89 --envName staging
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your
