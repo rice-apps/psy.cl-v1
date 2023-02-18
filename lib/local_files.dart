@@ -23,10 +23,10 @@ class CounterStorage {
 
   Future<File> get _localFile async {
     final path = await _localPath;
-    return File('$path/counter.txt');
+    return File('$path/output.txt');
   }
 
-  Future<int> readCounter() async {
+  Future<int> readData() async {
     try {
       final file = await _localFile;
 
@@ -40,11 +40,13 @@ class CounterStorage {
     }
   }
 
-  Future<File> writeCounter(int counter) async {
+  Future<File> writeData(String data) async {
     final file = await _localFile;
+    DateTime now = DateTime.now();
+    String date = DateTime(now.year, now.month, now.day).toString();
 
     // Write the file
-    return file.writeAsString('$counter');
+    return file.writeAsString("$date: $data");
   }
 }
 
@@ -63,20 +65,20 @@ class _ReadAndWriteState extends State<ReadAndWrite> {
   @override
   void initState() {
     super.initState();
-    widget.storage.readCounter().then((value) {
+    widget.storage.readData().then((value) {
       setState(() {
         _counter = value;
       });
     });
   }
 
-  Future<File> _incrementCounter() {
+  Future<File> _processData(String data) {
     setState(() {
       _counter++;
     });
 
     // Write the variable as a string to the file.
-    return widget.storage.writeCounter(_counter);
+    return widget.storage.writeData(data);
   }
 
   @override
@@ -91,7 +93,7 @@ class _ReadAndWriteState extends State<ReadAndWrite> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: () => _processData('button name'),
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),
