@@ -42,9 +42,6 @@ dependencies:
   smooth_page_indicator: ^1.0.0+2
   table_calendar: ^3.0.8
 
-  percent_indicator: ^3.4.0
-  flutter_circular_slider : ^2.5.0
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -66,6 +63,10 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+  fonts:
+    - family: Metropolis
+      fonts:
+        - asset: assets/fonts/Metropolis-Black.otf
   assets:
     - assets/images/spotting.png
     - assets/images/low.png
