@@ -184,9 +184,13 @@ class _ProgressCircle extends State<ProgressCircle> {
   String createInnerText() {
     if (utils.isInArc(
         periodPhase.startDay, periodPhase.endDay, _currentDay, cycleLength)) {
-      return '${utils.getDistance(_currentDay, periodPhase.endDay, cycleLength)} days until period ends';
+      final distance =
+          utils.getDistance(_currentDay, periodPhase.endDay, cycleLength);
+      return '$distance day${distance != 1 ? 's' : ''} until period ends';
     } else {
-      return '${utils.getDistance(_currentDay, periodPhase.startDay, cycleLength)} days until period starts';
+      final distance =
+          utils.getDistance(_currentDay, periodPhase.startDay, cycleLength);
+      return '$distance day${distance != 1 ? 's' : ''} until period starts';
     }
   }
 
