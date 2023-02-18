@@ -1,22 +1,76 @@
 import 'package:flutter/material.dart';
+import 'dart:async';
+import 'dart:io';
+import 'package:flutter/foundation.dart';
+import 'package:path_provider/path_provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
+}
+
+class CounterStorage {
+  Future<String> get _localPath async {
+    final directory = await getApplicationDocumentsDirectory();
+
+    return directory.path;
+  }
+
+  Future<File> get _localFile async {
+    final path = await _localPath;
+
+    return File("$path/buttonInfo.txt");
+  }
+
+  Future<int> readButtons() async {
+    try {
+      final file = await _localFile;
+
+      String contents = await file.readAsString();
+
+      return int.parse(contents);
+    } catch (e) {
+      return 0;
+    }
+  }
+
+  Future<File> writeButtons(int counter) async {
+    final file = await _localFile;
+
+    return file.writeAsString('$counter');
+  }
 }
 
 class MyApp extends StatefulWidget {
-  const MyApp({super.key});
+  MyApp({super.key});
+  final CounterStorage storage = CounterStorage();
 
   @override
-  State<MyApp> createState() => _MyApp();
+  State<MyApp> createState() => _MyAppState();
 }
 
-bool _isPressed1 = true;
-bool _isPressed2 = true;
-bool _isPressed3 = true;
-bool _isPressed4 = true;
+class _MyAppState extends State<MyApp> {
+  int _counter = 0;
 
-class _MyApp extends State<MyApp> {
+  @override
+  void initState() {
+    widget.storage.readButtons().then((int value) {
+      setState(() {
+        _counter = value;
+      });
+    });
+  }
+
+  Future<File> _incrementCounter() {
+    setState(() {
+      _counter++;
+    });
+    return widget.storage.writeButtons(_counter);
+  }
+
+  bool isPressed1 = true;
+  bool isPressed2 = true;
+  bool isPressed3 = false;
+  bool isPressed4 = false;
   @override
   Map<String, String> invertImage = {};
   Widget build(BuildContext context) {
@@ -30,7 +84,11 @@ class _MyApp extends State<MyApp> {
         'assets/images/invertNormal.png',
         'assets/images/high.png',
         'assets/images/invertHigh.png',
-        "Bleeding");
+        "Bleeding",
+        isPressed1,
+        isPressed2,
+        isPressed3,
+        isPressed4);
     Widget customRowTwo = _buildCustomButtonRow(
         'assets/images/exhausted.png',
         'assets/images/invertExhausted.png',
@@ -40,7 +98,11 @@ class _MyApp extends State<MyApp> {
         'assets/images/invertNormalEnergy.png',
         'assets/images/energized.png',
         'assets/images/invertEnergized.png',
-        "Energy");
+        "Energy",
+        isPressed1,
+        isPressed2,
+        isPressed3,
+        isPressed4);
     Widget customRowThree = _buildCustomButtonRow(
         'assets/images/PMS.png',
         'assets/images/invertPMS.png',
@@ -50,7 +112,11 @@ class _MyApp extends State<MyApp> {
         'assets/images/invertSad.png',
         'assets/images/happy.png',
         'assets/images/invertHappy.png',
-        "Mood");
+        "Mood",
+        isPressed1,
+        isPressed2,
+        isPressed3,
+        isPressed4);
 
     return MaterialApp(
         title: 'Flutter layout demo',
@@ -68,7 +134,7 @@ class _MyApp extends State<MyApp> {
   bool _isPressed = false;
   Widget buildButton(String imageSrc, String invertedImageSrc, bool isPressed) {
     return Material(
-        color: Colors.blue,
+        color: Color.fromARGB(255, 141, 184, 219),
         elevation: 8,
         shape: const CircleBorder(),
         clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -83,11 +149,12 @@ class _MyApp extends State<MyApp> {
             child: InkWell(
                 onTap: () => {
                       setState(() {
-                        _isPressed = !_isPressed;
+                        isPressed = !isPressed;
+                        _incrementCounter();
                       })
                     },
                 child: Ink.image(
-                  image: (_isPressed
+                  image: (isPressed
                       ? AssetImage(invertedImageSrc)
                       : AssetImage(imageSrc)),
                   height: 83,
@@ -105,7 +172,11 @@ class _MyApp extends State<MyApp> {
       String invertImageSrc3,
       String imageSrc4,
       String invertImageSrc4,
-      String header) {
+      String header,
+      bool isPressed1,
+      bool isPressed2,
+      bool isPressed3,
+      bool isPressed4) {
     return Container(
         height: 175,
         margin: const EdgeInsets.only(top: 15, bottom: 15),
@@ -137,10 +208,10 @@ class _MyApp extends State<MyApp> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      buildButton(imageSrc1, invertImageSrc1, _isPressed1),
-                      buildButton(imageSrc2, invertImageSrc2, _isPressed2),
-                      buildButton(imageSrc3, invertImageSrc3, _isPressed3),
-                      buildButton(imageSrc4, invertImageSrc4, _isPressed4)
+                      buildButton(imageSrc1, invertImageSrc1, isPressed1),
+                      buildButton(imageSrc2, invertImageSrc2, isPressed2),
+                      buildButton(imageSrc3, invertImageSrc3, isPressed3),
+                      buildButton(imageSrc4, invertImageSrc4, isPressed4)
                     ],
                   )))
         ]));
