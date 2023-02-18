@@ -66,12 +66,14 @@ class _ProgressCircle extends State<ProgressCircle> {
   @override
   Widget build(BuildContext context) {
     final rawSize = MediaQuery.of(context).size;
-    final shortSize = rawSize.shortestSide;
+    final pageSize =
+        Size(rawSize.width, rawSize.height * (1 - constants.minPanelHeight));
+    final shortSize = pageSize.shortestSide;
     final size = Size(shortSize, shortSize);
     final radius = shortSize * 0.4;
     final baseMiniSize = radius * 0.4;
     final mutMiniSize = baseMiniSize * (_heldDown ? 1.1 : 1);
-    final centerCircleSize = radius * 2 * 0.75;
+    final centerCircleSize = radius * 3 / 2;
 
     return Stack(alignment: Alignment.center, children: [
       CustomPaint(
@@ -82,8 +84,8 @@ class _ProgressCircle extends State<ProgressCircle> {
       ),
       Container(
         alignment: Alignment.center,
-        height: centerCircleSize,
-        width: centerCircleSize,
+        constraints: BoxConstraints.expand(
+            height: centerCircleSize, width: centerCircleSize),
         padding: const EdgeInsets.all(15),
         decoration: BoxDecoration(
             color: constants.white,
@@ -138,7 +140,7 @@ class _ProgressCircle extends State<ProgressCircle> {
                   });
                 },
                 onPanUpdate: (details) {
-                  _onPanUpdate(details, size, radius);
+                  _onPanUpdate(details, pageSize, radius);
                 },
                 onLongPressStart: (details) {
                   setState(() {
@@ -151,7 +153,7 @@ class _ProgressCircle extends State<ProgressCircle> {
                   });
                 },
                 onLongPressMoveUpdate: (details) {
-                  _onLongPressMoveUpdate(details, size, radius);
+                  _onLongPressMoveUpdate(details, pageSize, radius);
                 },
                 child: Container(
                   padding: const EdgeInsets.all(9),
@@ -208,14 +210,14 @@ class _ProgressCircle extends State<ProgressCircle> {
 
   /// Callback function for GestureDetector's onPanUpdate event to update the current angle
   void _onPanUpdate(DragUpdateDetails details, Size size, double radius) {
-    _updateAngle(
-        details.globalPosition.dx, details.globalPosition.dy, size, radius);
+    _updateAngle(details.globalPosition.dx, details.globalPosition.dy,
+        Size(size.width, size.height), radius);
   }
 
   /// Callback function for GestureDetector's onLongPressMoveUpdate event to update the current angle
   void _onLongPressMoveUpdate(
       LongPressMoveUpdateDetails details, Size size, double radius) {
-    _updateAngle(
-        details.globalPosition.dx, details.globalPosition.dy, size, radius);
+    _updateAngle(details.globalPosition.dx, details.globalPosition.dy,
+        Size(size.width, size.height), radius);
   }
 }
