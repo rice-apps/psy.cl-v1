@@ -67,32 +67,32 @@ flutter:
   # the material Icons class.
   uses-material-design: true
   assets:
-    - assets/images/spotting.png
-    - assets/images/low.png
-    - assets/images/normal.png
-    - assets/images/high.png
-    - assets/images/invertLow.png
-    - assets/images/invertSpotting.png
-    - assets/images/invertNormal.png
-    - assets/images/invertHigh.png
+    - assets/images/spottingWhite.png
+    - assets/images/lowWhite.png
+    - assets/images/normalWhite.png
+    - assets/images/highWhite.png
+    - assets/images/lowRed.png
+    - assets/images/spottingRed.png
+    - assets/images/normalRed.png
+    - assets/images/highRed.png
 
-    - assets/images/exhausted.png
-    - assets/images/tired.png
-    - assets/images/normalEnergy.png
-    - assets/images/energized.png
-    - assets/images/invertExhausted.png
-    - assets/images/invertTired.png
-    - assets/images/invertNormalEnergy.png
-    - assets/images/invertEnergized.png
+    - assets/images/exhaustedWhite.png
+    - assets/images/tiredWhite.png
+    - assets/images/normalEnergyWhite.png
+    - assets/images/energizedWhite.png
+    - assets/images/exhaustedRed.png
+    - assets/images/tiredRed.png
+    - assets/images/normalEnergyRed.png
+    - assets/images/energizedRed.png
 
-    - assets/images/PMS.png
-    - assets/images/sensitive.png
-    - assets/images/sad.png
-    - assets/images/happy.png
-    - assets/images/invertPMS.png
-    - assets/images/invertSensitive.png
-    - assets/images/invertSad.png
-    - assets/images/invertHappy.png
+    - assets/images/pmsWhite.png
+    - assets/images/sensitiveWhite.png
+    - assets/images/sadWhite.png
+    - assets/images/happyWhite.png
+    - assets/images/pmsRed.png
+    - assets/images/sensitiveRed.png
+    - assets/images/sadRed.png
+    - assets/images/happyRed.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:

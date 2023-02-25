@@ -13,34 +13,34 @@ class _Buttons extends State<Buttons> {
   @override
   Widget build(BuildContext context) {
     Widget customRowOne = _buildCustomButtonRow(
-        'assets/images/low.png',
-        'assets/images/invertLow.png',
-        'assets/images/spotting.png',
-        'assets/images/invertSpotting.png',
-        'assets/images/normal.png',
-        'assets/images/invertNormal.png',
-        'assets/images/high.png',
-        'assets/images/invertHigh.png',
+        'assets/images/lowWhite.png',
+        'assets/images/lowRed.png',
+        'assets/images/spottingWhite.png',
+        'assets/images/spottingRed.png',
+        'assets/images/normalWhite.png',
+        'assets/images/normalRed.png',
+        'assets/images/highWhite.png',
+        'assets/images/highRed.png',
         "Bleeding");
     Widget customRowTwo = _buildCustomButtonRow(
-        'assets/images/exhausted.png',
-        'assets/images/invertExhausted.png',
-        'assets/images/tired.png',
-        'assets/images/invertTired.png',
-        'assets/images/normalEnergy.png',
-        'assets/images/invertNormalEnergy.png',
-        'assets/images/energized.png',
-        'assets/images/invertEnergized.png',
+        'assets/images/exhaustedWhite.png',
+        'assets/images/exhaustedRed.png',
+        'assets/images/tiredWhite.png',
+        'assets/images/tiredRed.png',
+        'assets/images/normalEnergyWhite.png',
+        'assets/images/normalEnergyRed.png',
+        'assets/images/energizedWhite.png',
+        'assets/images/energizedRed.png',
         "Energy");
     Widget customRowThree = _buildCustomButtonRow(
-        'assets/images/PMS.png',
-        'assets/images/invertPMS.png',
-        'assets/images/sensitive.png',
-        'assets/images/invertSensitive.png',
-        'assets/images/sad.png',
-        'assets/images/invertSad.png',
-        'assets/images/happy.png',
-        'assets/images/invertHappy.png',
+        'assets/images/pmsWhite.png',
+        'assets/images/pmsRed.png',
+        'assets/images/sensitiveWhite.png',
+        'assets/images/sensitiveRed.png',
+        'assets/images/sadWhite.png',
+        'assets/images/sadRed.png',
+        'assets/images/happyWhite.png',
+        'assets/images/happyRed.png',
         "Mood");
 
     return Column(children: [customRowOne, customRowTwo, customRowThree]);
