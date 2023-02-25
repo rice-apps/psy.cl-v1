@@ -32,7 +32,7 @@ class _Calendar extends State<Calendar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.redAccent,
         resizeToAvoidBottomInset: true,
         body: SingleChildScrollView(
           child: TableCalendar(
