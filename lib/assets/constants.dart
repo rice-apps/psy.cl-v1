@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 // Sliding panel
-const minPanelHeight = 0.4;
+const minPanelHeight = 0.35;
 const maxPanelHeight = 0.9;
 
 // Colors
