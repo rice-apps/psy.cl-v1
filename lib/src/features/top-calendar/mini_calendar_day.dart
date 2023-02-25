@@ -15,10 +15,11 @@ class _MiniCalendarDay extends State<MiniCalendarDay> {
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.center,
-      height: 50,
       width: 35,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(50), color: Colors.amber),
+          borderRadius: BorderRadius.all(Radius.circular(50)),
+          color: Colors.amber),
+      child: Text(widget.label),
     );
   }
 }
