@@ -21,19 +21,37 @@
 
 import 'package:amplify_core/amplify_core.dart';
 import 'AggregateData.dart';
+import 'Calendar.dart';
+import 'DataEntry.dart';
+import 'ProgressCircle.dart';
 import 'UserData.dart';
+import 'BleedingData.dart';
+import 'DayData.dart';
+import 'EnergyData.dart';
+import 'MoodData.dart';
+import 'PhaseData.dart';
+import 'SexDrive.dart';
 
 export 'AggregateData.dart';
+export 'BleedingData.dart';
+export 'Calendar.dart';
+export 'DataEntry.dart';
+export 'DayData.dart';
+export 'EnergyData.dart';
+export 'MoodData.dart';
+export 'PhaseData.dart';
+export 'ProgressCircle.dart';
+export 'SexDrive.dart';
 export 'UserData.dart';
 
 class ModelProvider implements ModelProviderInterface {
   @override
-  String version = "e1206d2a60daa3f4fe706a02f45f09d4";
+  String version = "0931e0840c19c51dc2f2f6f416696a8b";
   @override
-  List<ModelSchema> modelSchemas = [AggregateData.schema, UserData.schema];
+  List<ModelSchema> modelSchemas = [AggregateData.schema, Calendar.schema, DataEntry.schema, ProgressCircle.schema, UserData.schema];
   static final ModelProvider _instance = ModelProvider();
   @override
-  List<ModelSchema> customTypeSchemas = [];
+  List<ModelSchema> customTypeSchemas = [BleedingData.schema, DayData.schema, EnergyData.schema, MoodData.schema, PhaseData.schema, SexDrive.schema];
 
   static ModelProvider get instance => _instance;
   
@@ -41,6 +59,12 @@ class ModelProvider implements ModelProviderInterface {
     switch(modelName) {
       case "AggregateData":
         return AggregateData.classType;
+      case "Calendar":
+        return Calendar.classType;
+      case "DataEntry":
+        return DataEntry.classType;
+      case "ProgressCircle":
+        return ProgressCircle.classType;
       case "UserData":
         return UserData.classType;
       default:

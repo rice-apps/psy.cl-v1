@@ -1,3 +1,64 @@
+type DayData {
+  CurrentDay: AWSDate
+}
+
+type PhaseData {
+  Period: Boolean
+  Ovulation: Boolean
+  Luteal: Boolean
+  Follicular: Boolean
+}
+
+type ProgressCircle @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  CurrentDate: DayData
+  CurrentPhase: PhaseData
+  DataEntries: [DataEntry] @hasMany(indexName: "byProgressCircle", fields: ["id"])
+  Calendar: Calendar @belongsTo
+}
+
+type Calendar @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  CurrentDate: DayData
+  CurrentPhase: PhaseData
+  DataEntries: [DataEntry] @hasMany(indexName: "byCalendar", fields: ["id"])
+  ProgressCircle: ProgressCircle @hasOne
+}
+
+type SexDrive {
+  Withdrawn: Boolean
+  High: Boolean
+  Solo: Boolean
+}
+
+type MoodData {
+  Happy: Boolean
+  Sad: Boolean
+  Senstitive: Boolean
+}
+
+type EnergyData {
+  Exhausted: Boolean
+  Tired: Boolean
+  Normal: Boolean
+}
+
+type BleedingData {
+  Spotting: Boolean
+  Low: Boolean
+  Normal: Boolean
+}
+
+type DataEntry @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  Bleeding: BleedingData
+  Energy: EnergyData
+  Mood: MoodData
+  SexDrive: SexDrive
+  progresscircleID: ID! @index(name: "byProgressCircle")
+  calendarID: ID! @index(name: "byCalendar")
+}
+
 type AggregateData @model @auth(rules: [{allow: public}]) {
   id: ID!
   averageCycleDuration: Int
