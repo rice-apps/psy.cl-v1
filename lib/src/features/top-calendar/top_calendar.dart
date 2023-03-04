@@ -22,36 +22,60 @@ class _TopCalendar extends State<TopCalendar> {
   late final PageController controller =
       PageController(viewportFraction: 0.2, initialPage: _currentDay - 1);
 
+  // Misc. constants
+  final arrowColor = Colors.grey.shade700;
+  final double arrowSize = 24;
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-        height: 120,
-        clipBehavior: Clip.none,
-        child: PageView.builder(
-          controller: controller,
-          itemCount: _lastDay.day,
-          onPageChanged: (int index) => setState(() {
-            _currentDay = index + 1;
-          }),
-          itemBuilder: (context, idx) {
-            DateTime targetDay = DateTime(_currentYear, _currentMonth, idx + 1);
-            MiniCalendarDay miniDay = MiniCalendarDay(
-              month: targetDay.month,
-              day: targetDay.day,
-              label: intToWeekday(targetDay.weekday),
-              selected: targetDay.day == _currentDay,
-            );
-            return Padding(
-              padding: EdgeInsets.only(left: 10, right: 10),
-              child: miniDay,
-            );
-          },
-        ));
+    return Column(
+      children: [
+        SizedBox(
+          height: 25,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              Icons.chevron_left,
+              color: arrowColor,
+              size: arrowSize,
+            ),
+            Text(intToMonthName(_currentMonth)),
+            Icon(Icons.chevron_right, color: arrowColor, size: arrowSize)
+          ],
+        ),
+        Container(
+            height: 120,
+            clipBehavior: Clip.none,
+            child: PageView.builder(
+              controller: controller,
+              itemCount: _lastDay.day,
+              onPageChanged: (int index) => setState(() {
+                _currentDay = index + 1;
+              }),
+              itemBuilder: (context, idx) {
+                DateTime targetDay =
+                    DateTime(_currentYear, _currentMonth, idx + 1);
+                MiniCalendarDay miniDay = MiniCalendarDay(
+                  month: targetDay.month,
+                  day: targetDay.day,
+                  label: intToWeekday(targetDay.weekday),
+                  selected: targetDay.day == _currentDay,
+                );
+                return Padding(
+                  padding: EdgeInsets.only(left: 10, right: 10),
+                  child: miniDay,
+                );
+              },
+            ))
+      ],
+    );
   }
 
   /// Converts a integer 0-7 into an abbreviated weekday name
   String intToWeekday(int num) {
-    assert(num >= 0 && num <= 7);
+    assert(num >= 1 && num <= 7);
     Map<int, String> weekdays = {
       1: 'Mon',
       2: 'Tues',
@@ -63,5 +87,26 @@ class _TopCalendar extends State<TopCalendar> {
     };
 
     return weekdays[num]!;
+  }
+
+  /// Converts an integer 0-7 into its corresponding month's name
+  String intToMonthName(int num) {
+    assert(num >= 1 && num <= 12);
+    Map<int, String> monthNames = {
+      1: 'January',
+      2: 'February',
+      3: 'March',
+      4: 'April',
+      5: 'May',
+      6: 'June',
+      7: 'July',
+      8: 'August',
+      9: 'September',
+      10: 'October',
+      11: 'November',
+      12: 'December'
+    };
+
+    return monthNames[num]!;
   }
 }
