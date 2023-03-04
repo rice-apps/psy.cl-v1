@@ -19,7 +19,8 @@ class _TopCalendar extends State<TopCalendar> {
   late final int _currentYear = today.year;
 
   // Controller
-  final PageController controller = PageController(viewportFraction: 0.2);
+  late final PageController controller =
+      PageController(viewportFraction: 0.2, initialPage: _currentDay - 1);
 
   @override
   Widget build(BuildContext context) {
