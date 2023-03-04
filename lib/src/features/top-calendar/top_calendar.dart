@@ -25,7 +25,8 @@ class _TopCalendar extends State<TopCalendar> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: 75,
+        height: 120,
+        clipBehavior: Clip.none,
         child: PageView.builder(
           controller: controller,
           itemCount: _lastDay.day,
@@ -40,9 +41,6 @@ class _TopCalendar extends State<TopCalendar> {
               label: intToWeekday(targetDay.weekday),
               selected: targetDay.day == _currentDay,
             );
-            print("Current day: $_currentDay");
-            print("Target day: ${targetDay.day}");
-            print(targetDay.day == _currentDay);
             return Padding(
               padding: EdgeInsets.only(left: 10, right: 10),
               child: miniDay,

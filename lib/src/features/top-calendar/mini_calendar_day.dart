@@ -20,17 +20,16 @@ class _MiniCalendarDay extends State<MiniCalendarDay> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      alignment: Alignment.center,
-      width: 35,
+      margin: EdgeInsets.only(top: 25, bottom: 25),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(50)),
+          borderRadius: BorderRadius.circular(100),
           color: Colors.transparent,
           boxShadow: widget.selected
               ? [
                   BoxShadow(
-                      color: Colors.purple,
+                      color: Color.fromARGB(255, 148, 79, 178),
                       blurStyle: BlurStyle.outer,
-                      blurRadius: 10)
+                      blurRadius: 20)
                 ]
               : []),
       child: Column(
