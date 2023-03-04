@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../progress-circle/progress_circle.dart';
 import './mini_calendar_day.dart';
+import './month_navigator.dart';
 
 class TopCalendar extends StatefulWidget {
   const TopCalendar({super.key});
@@ -15,16 +16,19 @@ class _TopCalendar extends State<TopCalendar> {
   late final DateTime _lastDay = DateTime.utc(today.year, today.month + 1, 0);
   late final DateTime _firstDay = DateTime.utc(today.year, today.month, 1);
   late int _currentDay = today.day;
-  late final int _currentMonth = today.month;
-  late final int _currentYear = today.year;
+  late int _currentMonth = today.month;
+  late int _currentYear = today.year;
 
   // Controller
   late final PageController controller =
       PageController(viewportFraction: 0.2, initialPage: _currentDay - 1);
 
-  // Misc. constants
-  final arrowColor = Colors.grey.shade700;
-  final double arrowSize = 24;
+  // Callback functions
+  void _updateMonth(int increment) {
+    setState(() {
+      _currentMonth = ((_currentMonth + increment - 1) % 12) + 1;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,17 +37,9 @@ class _TopCalendar extends State<TopCalendar> {
         SizedBox(
           height: 25,
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              Icons.chevron_left,
-              color: arrowColor,
-              size: arrowSize,
-            ),
-            Text(intToMonthName(_currentMonth)),
-            Icon(Icons.chevron_right, color: arrowColor, size: arrowSize)
-          ],
+        MonthNavigator(
+          month: _currentMonth,
+          updater: _updateMonth,
         ),
         Container(
             height: 120,
