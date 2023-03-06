@@ -25,7 +25,7 @@ class MonthNavigator extends StatelessWidget {
           intToMonthName(month),
           style: TextStyle(
               fontFamily: "Metropolis",
-              fontWeight: FontWeight.w600,
+              fontWeight: FontWeight.w700,
               fontSize: 24,
               color: Colors.grey.shade700),
         ),
