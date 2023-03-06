@@ -5,17 +5,30 @@ class MonthNavigator extends StatelessWidget {
   const MonthNavigator({super.key, required this.month, required this.updater});
   final int month;
   final void Function(int) updater;
+  final double buttonPadding = 120;
 
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
+        SizedBox(
+          width: buttonPadding,
+        ),
         MonthNavButton(
             icon: Icons.chevron_left, increment: -1, updater: updater),
+        Expanded(
+          child: Container(),
+        ),
         Text(intToMonthName(month)),
+        Expanded(
+          child: Container(),
+        ),
         MonthNavButton(
-            icon: Icons.chevron_right, increment: 1, updater: updater)
+            icon: Icons.chevron_right, increment: 1, updater: updater),
+        SizedBox(
+          width: buttonPadding,
+        ),
       ],
     );
   }
