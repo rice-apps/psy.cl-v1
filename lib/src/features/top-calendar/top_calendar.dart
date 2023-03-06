@@ -13,11 +13,10 @@ class TopCalendar extends StatefulWidget {
 class _TopCalendar extends State<TopCalendar> {
   // Fetch date data
   DateTime today = DateTime.now();
-  late final DateTime _lastDay = DateTime.utc(today.year, today.month + 1, 0);
-  late final DateTime _firstDay = DateTime.utc(today.year, today.month, 1);
   late int _currentDay = today.day;
   late int _currentMonth = today.month;
   late int _currentYear = today.year;
+  late DateTime _lastDay = DateTime.utc(_currentYear, _currentMonth + 1, 0);
 
   // Controller
   late final PageController controller =
@@ -27,6 +26,7 @@ class _TopCalendar extends State<TopCalendar> {
   void _updateMonth(int increment) {
     setState(() {
       _currentMonth = ((_currentMonth + increment - 1) % 12) + 1;
+      _lastDay = DateTime.utc(_currentYear, _currentMonth + 1, 0);
     });
   }
 
