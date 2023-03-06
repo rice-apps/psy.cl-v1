@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:psycl/src/features/top-calendar/month_nav_button.dart';
+import 'package:psycl/assets/constants.dart' as constants;
 
 class MonthNavigator extends StatelessWidget {
   const MonthNavigator({super.key, required this.month, required this.updater});
   final int month;
   final void Function(int) updater;
-  final double buttonPadding = 120;
+  final double buttonPadding = 80;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,14 @@ class MonthNavigator extends StatelessWidget {
         Expanded(
           child: Container(),
         ),
-        Text(intToMonthName(month)),
+        Text(
+          intToMonthName(month),
+          style: TextStyle(
+              fontFamily: "Metropolis",
+              fontWeight: FontWeight.w600,
+              fontSize: 24,
+              color: Colors.grey.shade700),
+        ),
         Expanded(
           child: Container(),
         ),

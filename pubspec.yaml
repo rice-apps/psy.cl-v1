@@ -66,8 +66,10 @@ flutter:
   fonts:
     - family: Metropolis
       fonts:
-        - asset: assets/fonts/Metropolis-Black.otf
         - asset: assets/fonts/Metropolis-Regular.otf
+        - asset: assets/fonts/Metropolis-Medium.otf
+        - asset: assets/fonts/Metropolis-Bold.otf
+        - asset: assets/fonts/Metropolis-Black.otf
   assets:
     - assets/images/spotting.png
     - assets/images/low.png

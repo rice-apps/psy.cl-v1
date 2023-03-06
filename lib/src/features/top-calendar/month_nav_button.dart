@@ -11,7 +11,7 @@ class MonthNavButton extends StatelessWidget {
   final IconData icon;
 
   final arrowColor = Colors.grey.shade700;
-  final double arrowSize = 24;
+  final double arrowSize = 32;
 
   @override
   Widget build(BuildContext context) {

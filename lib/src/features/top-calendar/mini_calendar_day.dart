@@ -36,11 +36,23 @@ class _MiniCalendarDay extends State<MiniCalendarDay> {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(widget.label),
+          Text(
+            widget.label,
+            style: TextStyle(
+                fontFamily: "Metropolis",
+                fontSize: 12,
+                fontWeight: FontWeight.bold,
+                color: Colors.grey.shade500),
+          ),
           SizedBox(
             height: 8,
           ),
-          Text(widget.day.toString())
+          Text(widget.day.toString(),
+              style: TextStyle(
+                  fontFamily: "Metropolis",
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.grey.shade700))
         ],
       ),
     );
