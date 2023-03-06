@@ -104,6 +104,7 @@ class _ProgressCircle extends State<ProgressCircle> {
               createInnerText(),
               style: TextStyle(
                   fontFamily: "Metropolis",
+                  fontWeight: FontWeight.w600,
                   fontSize: 30,
                   color: Colors.grey.shade800),
               textAlign: TextAlign.center,
@@ -114,6 +115,7 @@ class _ProgressCircle extends State<ProgressCircle> {
             Text("${_currentPhase.name} phase",
                 style: TextStyle(
                     fontFamily: "Metropolis",
+                    fontWeight: FontWeight.w600,
                     fontSize: 15,
                     color: _currentPhase.activeColor))
           ],
@@ -171,6 +173,7 @@ class _ProgressCircle extends State<ProgressCircle> {
                     'day ${utils.toDays(_angle, cycleLength)}',
                     style: TextStyle(
                         fontFamily: 'Metropolis',
+                        fontWeight: FontWeight.w600,
                         fontSize: 15,
                         color: _currentPhase.activeColor),
                     textAlign: TextAlign.center,
