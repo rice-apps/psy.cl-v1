@@ -115,7 +115,7 @@ class _ProgressCircle extends State<ProgressCircle> {
             Text("${_currentPhase.name} phase",
                 style: TextStyle(
                     fontFamily: "Metropolis",
-                    fontWeight: FontWeight.w900,
+                    fontWeight: FontWeight.w700,
                     fontSize: 15,
                     color: _currentPhase.activeColor))
           ],
