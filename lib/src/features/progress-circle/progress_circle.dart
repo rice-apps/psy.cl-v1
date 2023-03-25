@@ -4,6 +4,7 @@ import '../../../assets/constants.dart' as constants;
 import 'phase.dart';
 import 'dart:math' as math;
 import 'utils.dart' as utils;
+import '../popup.dart' as popup;
 
 class ProgressCircle extends StatefulWidget {
   const ProgressCircle({super.key});
