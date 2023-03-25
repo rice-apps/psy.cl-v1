@@ -16,5 +16,23 @@
         "psycl2": {}
       }
     }
+  },
+  "mana": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-psycl2-mana-145147-authRole",
+      "UnauthRoleArn": "arn:aws:iam::059784805544:role/amplify-psycl2-mana-145147-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::059784805544:role/amplify-psycl2-mana-145147-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-psycl2-mana-145147-deployment",
+      "UnauthRoleName": "amplify-psycl2-mana-145147-unauthRole",
+      "StackName": "amplify-psycl2-mana-145147",
+      "StackId": "arn:aws:cloudformation:us-east-1:059784805544:stack/amplify-psycl2-mana-145147/be7d5850-a4cd-11ed-becc-0ebc7567a9a9",
+      "AmplifyAppId": "d1xfk2f81dc5ak"
+    },
+    "categories": {
+      "auth": {
+        "psycl2": {}
+      }
+    }
   }
 }

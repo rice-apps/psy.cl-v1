@@ -14,6 +14,7 @@ class PanelWidget extends StatelessWidget {
         controller: controller,
         children: <Widget>[
           const SizedBox(height: 36),
+          buildPopUp(context),
           buildAboutText(),
           const SizedBox(height: 24),
         ],
@@ -38,4 +39,38 @@ class PanelWidget extends StatelessWidget {
           ],
         ),
       );
+  
+  Widget buildPopUp(BuildContext context) => Container(
+    child: ElevatedButton(
+              child: Text('Popup Button'),
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                    title: Text('What do my phases mean?'),
+                    content: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: const <Widget>[
+                        Text(
+                          'Your cycle typically consists of four main phases: follicular, period, ovulation, and luteal!'
+                        ),
+                        SizedBox(height: 12),
+                        Text("""
+                          Follicular\n\n\n\n
+                          Period\n\n\n\n
+                          Ovulation\n\n\n\n
+                          Luteal\n\n\n\n
+                          """),
+                      ],
+                    ),
+                    actions: [
+                      TextButton(
+                        child: const Text('Close'),
+                        onPressed: () => Navigator.pop(context),
+                        ),
+                    ],
+                  ),
+                );
+              }),
+    );
 }
