@@ -66,6 +66,8 @@ class _ProgressCircle extends State<ProgressCircle> {
   @override
   Widget build(BuildContext context) {
     final rawSize = MediaQuery.of(context).size;
+    late RenderBox box = context.findRenderObject() as RenderBox;
+    late Offset position = box.localToGlobal(Offset.zero);
     final pageSize =
         Size(rawSize.width, rawSize.height * (1 - constants.minPanelHeight));
     final shortSize = pageSize.shortestSide;
@@ -142,7 +144,7 @@ class _ProgressCircle extends State<ProgressCircle> {
                   });
                 },
                 onPanUpdate: (details) {
-                  _onPanUpdate(details, pageSize, radius);
+                  _onPanUpdate(details, pageSize, radius, position);
                 },
                 onLongPressStart: (details) {
                   setState(() {
@@ -155,7 +157,7 @@ class _ProgressCircle extends State<ProgressCircle> {
                   });
                 },
                 onLongPressMoveUpdate: (details) {
-                  _onLongPressMoveUpdate(details, pageSize, radius);
+                  _onLongPressMoveUpdate(details, pageSize, radius, position);
                 },
                 child: Container(
                   padding: const EdgeInsets.all(9),
@@ -204,9 +206,10 @@ class _ProgressCircle extends State<ProgressCircle> {
   }
 
   /// Updates the angle given the target location [x] and [y], [size] of the context and the [radius] of the circular "track"
-  void _updateAngle(double x, double y, Size size, double radius) {
+  void _updateAngle(
+      double x, double y, Size size, double radius, Offset topOffset) {
     double dx = x - size.width / 2;
-    double dy = y - size.height / 2;
+    double dy = y - topOffset.dy - radius * 1.2;
     double newAngle = math.atan2(dy, dx);
     setState(() {
       _angle = newAngle;
@@ -216,15 +219,16 @@ class _ProgressCircle extends State<ProgressCircle> {
   }
 
   /// Callback function for GestureDetector's onPanUpdate event to update the current angle
-  void _onPanUpdate(DragUpdateDetails details, Size size, double radius) {
+  void _onPanUpdate(
+      DragUpdateDetails details, Size size, double radius, Offset topOffset) {
     _updateAngle(details.globalPosition.dx, details.globalPosition.dy,
-        Size(size.width, size.height), radius);
+        Size(size.width, size.height), radius, topOffset);
   }
 
   /// Callback function for GestureDetector's onLongPressMoveUpdate event to update the current angle
-  void _onLongPressMoveUpdate(
-      LongPressMoveUpdateDetails details, Size size, double radius) {
+  void _onLongPressMoveUpdate(LongPressMoveUpdateDetails details, Size size,
+      double radius, Offset topOffset) {
     _updateAngle(details.globalPosition.dx, details.globalPosition.dy,
-        Size(size.width, size.height), radius);
+        Size(size.width, size.height), radius, topOffset);
   }
 }
