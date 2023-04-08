@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:psycl/src/features/calendar-circle-wrapper/wrapper.dart';
 import 'package:psycl/src/features/progress-circle/progress_painter.dart';
+import 'package:psycl/src/features/top-calendar/top_calendar.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../calendar/calendar.dart';
 import '../progress-circle/progress_circle.dart';
@@ -12,7 +14,7 @@ class PagedBackground extends StatelessWidget {
   Widget build(BuildContext context) {
     final PageController controller = PageController();
     final pageViewChildren = <Widget>[
-      Center(child: ProgressCircle()),
+      Center(child: CalendarCircleWrapper()),
       Center(
         child: Calendar(),
       ),
