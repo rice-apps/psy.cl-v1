@@ -3,6 +3,7 @@ import 'package:psycl/src/features/progress-circle/progress_painter.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../calendar/calendar.dart';
 import '../progress-circle/progress_circle.dart';
+import '../recommendation/recommendation-page.dart';
 import '../../../assets/constants.dart' as constants;
 
 class PagedBackground extends StatelessWidget {
@@ -17,7 +18,7 @@ class PagedBackground extends StatelessWidget {
         child: Calendar(),
       ),
       const Center(
-        child: Text('Graphs Page'),
+        child: Recommendation(),
       ),
     ];
 
