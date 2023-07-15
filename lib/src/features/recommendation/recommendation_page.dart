@@ -36,6 +36,7 @@ class Recommendation extends StatelessWidget {
             padding: const EdgeInsets.only(top: 40, left: 20, right: 20),
             crossAxisSpacing: 40,
             mainAxisSpacing: 50,
+            physics: NeverScrollableScrollPhysics(),
             children: [
               //Replace containers with functional filter buttons
               Container(

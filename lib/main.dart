@@ -63,7 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
         panelBuilder: (controller) => PanelWidget(
           controller: controller,
         ),
-        borderRadius: const BorderRadius.vertical(top: Radius.circular(30)),
+        borderRadius: const BorderRadius.vertical(top: Radius.circular(50)),
         boxShadow: const [
           BoxShadow(blurRadius: 8.0, color: constants.darkGray)
         ],

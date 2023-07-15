@@ -1,1 +1,0 @@
-//swipe up when third child-page of sliding_background is active
