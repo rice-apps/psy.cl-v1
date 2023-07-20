@@ -30,12 +30,12 @@ class Recommendation extends StatelessWidget {
           textAlign: TextAlign.center,
         ),
         SizedBox(
-          height: 200,
+          height: 340,
           child: GridView.count(
             crossAxisCount: 3,
-            padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
-            crossAxisSpacing: 90,
-            mainAxisSpacing: 10,
+            padding: const EdgeInsets.only(top: 40, left: 20, right: 20),
+            crossAxisSpacing: 40,
+            mainAxisSpacing: 50,
             physics: NeverScrollableScrollPhysics(),
             children: [
               //Replace containers with functional filter buttons
