@@ -12,7 +12,7 @@ class Recommendation extends StatelessWidget {
       children: [
         Container(
           margin: const EdgeInsets.only(top: 40),
-          padding: const EdgeInsets.only(top: 15, left: 20, right: 20, bottom: 5),
+          padding: const EdgeInsets.only(top: 0, left: 20, right: 20, bottom: 5),
           child: Text(
             'What are you looking for today?',
                 style: TextStyle(
@@ -30,12 +30,12 @@ class Recommendation extends StatelessWidget {
           textAlign: TextAlign.center,
         ),
         SizedBox(
-          height: 360,
+          height: 200,
           child: GridView.count(
             crossAxisCount: 3,
-            padding: const EdgeInsets.only(top: 40, left: 20, right: 20),
-            crossAxisSpacing: 40,
-            mainAxisSpacing: 50,
+            padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
+            crossAxisSpacing: 90,
+            mainAxisSpacing: 10,
             physics: NeverScrollableScrollPhysics(),
             children: [
               //Replace containers with functional filter buttons
