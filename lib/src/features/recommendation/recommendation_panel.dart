@@ -65,9 +65,7 @@ class _RecommendationPanelState extends State<RecommendationPanel> {
       ]
     );
 
-    Widget topThreeRecommendations() => Container(
-      padding: const EdgeInsets.symmetric(horizontal: 24),
-      child: ListView.builder(
+    Widget topThreeRecommendations() => ListView.builder(
         shrinkWrap: true,
         itemCount: _recommendationCards.length >= 3 ? 3 : _recommendationCards.length,
         itemBuilder: (context, index){
@@ -75,11 +73,9 @@ class _RecommendationPanelState extends State<RecommendationPanel> {
             padding: const EdgeInsets.all(20),
             child: _recommendationCards[index]
           ) ;
-        }));
+        });
     
-    Widget moreRecommendations() => Container(
-        padding: const EdgeInsets.symmetric(horizontal: 24),
-        child: ListView.builder(
+    Widget moreRecommendations() => ListView.builder(
           shrinkWrap: true,
           itemCount: _recommendationCards.length > 3 ? _recommendationCards.length - 3 : 0,
           itemBuilder: (context, index){
@@ -87,7 +83,7 @@ class _RecommendationPanelState extends State<RecommendationPanel> {
               padding: const EdgeInsets.all(20),
               child: _recommendationCards[index + 3]
             ) ;
-        }));
+        });
 
 }
 
