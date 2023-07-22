@@ -95,6 +95,7 @@ flutter:
     - assets/images/invertSensitive.png
     - assets/images/invertSad.png
     - assets/images/invertHappy.png
+    - assets/images/apple.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:
