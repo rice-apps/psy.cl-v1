@@ -41,6 +41,7 @@ dependencies:
   sliding_up_panel: ^2.0.0+1
   smooth_page_indicator: ^1.0.0+2
   table_calendar: ^3.0.8
+  flutter_slidable: ^3.0.0
 
 dev_dependencies:
   flutter_test:
@@ -94,6 +95,7 @@ flutter:
     - assets/images/invertSensitive.png
     - assets/images/invertSad.png
     - assets/images/invertHappy.png
+    - assets/images/apple.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:

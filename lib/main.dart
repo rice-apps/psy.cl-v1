@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
@@ -6,10 +7,7 @@ import 'src/features/landing-page/background.dart';
 import 'src/features/landing-page/sliding_background.dart';
 
 import './assets/constants.dart' as constants;
-
-void main() {
-  runApp(const MyApp());
-}
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -68,6 +66,8 @@ class _MyHomePageState extends State<MyHomePage> {
           BoxShadow(blurRadius: 8.0, color: constants.darkGray)
         ],
       ),
-    );
+    );   
   }
 }
+
+
