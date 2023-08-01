@@ -17,7 +17,7 @@ class PagedBackground extends StatelessWidget {
       Center(
         child: Calendar(),
       ),
-      const Center(
+      Center(
         child: Recommendation(),
       ),
     ];
@@ -26,7 +26,7 @@ class PagedBackground extends StatelessWidget {
       controller: controller,
       children: pageViewChildren,
     );
-
+    
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [

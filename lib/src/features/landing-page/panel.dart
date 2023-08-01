@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import './buttons.dart';
 import '../recommendation/recommendation_panel.dart';
 
+bool isAboutText = false;
+
 class PanelWidget extends StatelessWidget {
   final ScrollController controller;
 
@@ -16,8 +18,7 @@ class PanelWidget extends StatelessWidget {
         controller: controller,
         children: <Widget>[
           const SizedBox(height: 36,),
-          //buildAboutText(), //Replace with RecommendationPanel() when Recommendation page is open
-          RecommendationPanel(),
+          isAboutText ? buildAboutText() : const RecommendationPanel(),
           const SizedBox(height: 24),
         ],
       );
@@ -30,3 +31,7 @@ class PanelWidget extends StatelessWidget {
         ),
       );
 }
+
+
+
+
