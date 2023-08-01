@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../assets/constants.dart' as constants;
-//import file that contains class of recommendation cards
+import '../recom_approval.dart';
+
 
 class RecommendationPanel extends StatefulWidget {
   const RecommendationPanel({super.key});
@@ -12,16 +13,28 @@ class RecommendationPanel extends StatefulWidget {
 class _RecommendationPanelState extends State<RecommendationPanel> {
 
   //Placeholder cards...should be replaced with list of functional recommendation cards
+
   final List<Container> _recommendationCards = [
-    Container(height: 100, color: Colors.pink),
-    Container(height: 100, color: Colors.orange),
-    Container(height: 100, color: Colors.pink),
-    Container(height: 100, color: Colors.blue),
-    Container(height: 100, color: Colors.green),
-    Container(height: 100, color: Colors.blue),
-    Container(height: 100, color: Colors.green),
-    Container(height: 100, color: Colors.blue),
+    Container(height: 100, child: Recommendation1()),
+    Container(height: 100, child: Recommendation2()),
+    Container(height: 100, child: Recommendation1()),
+    Container(height: 100, child: Recommendation2()),
+    Container(height: 100, child: Recommendation1()),
+    Container(height: 100, child: Recommendation2()),
+    Container(height: 100, child: Recommendation1()),
+    Container(height: 100, child: Recommendation2()),
   ];
+
+  // final List<Container> _recommendationCards = [
+  //   Container(height: 100, color: Colors.pink),
+  //   Container(height: 100, color: Colors.orange),
+  //   Container(height: 100, color: Colors.pink),
+  //   Container(height: 100, color: Colors.blue),
+  //   Container(height: 100, color: Colors.green),
+  //   Container(height: 100, color: Colors.blue),
+  //   Container(height: 100, color: Colors.green),
+  //   Container(height: 100, color: Colors.blue),
+  // ];
 
   @override
   Widget build(BuildContext context) =>
