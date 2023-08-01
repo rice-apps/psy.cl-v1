@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../filter_buttons.dart';
+
 
 //Third child-page of sliding_background
 class Recommendation extends StatefulWidget {
@@ -34,53 +36,7 @@ class _RecommendationState extends State<Recommendation> {
             color: Colors.grey.shade600),
           textAlign: TextAlign.center,
         ),
-        SizedBox(
-          height: 340,
-          child: GridView.count(
-            crossAxisCount: 3,
-            padding: const EdgeInsets.only(top: 40, left: 20, right: 20),
-            crossAxisSpacing: 40,
-            mainAxisSpacing: 50,
-            physics: NeverScrollableScrollPhysics(),
-            children: [
-              //Replace containers with functional filter buttons
-              Container(
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.blue),
-              ),
-              Container(
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.blue),
-              ),
-
-              Container(
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.blue),
-              ),
-
-              Container(
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.blue),
-              ),
-
-              Container(
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.blue),
-              ),
-
-              Container(
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.blue),
-              )
-            ]
-          )
-        ),  
+        Expanded(child: FilterButton()),  
       ],
     );
     

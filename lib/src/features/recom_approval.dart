@@ -1,7 +1,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import './assets/constants.dart' as constants;
 
 /// Flutter code sample for [Card].
 
