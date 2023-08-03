@@ -19,10 +19,12 @@ class _RecommendationPanelState extends State<RecommendationPanel> {
     Container(child:Recommendation1()),
     Container(child:Recommendation2()),
     Container(child:Recommendation3()),
+
+  ];
+  final List<Container> _recommendationCardsmore = [
     Container(child:Recommendation1()),
     Container(child:Recommendation2()),
     Container(child:Recommendation3()),
-
   ];
 
   @override
@@ -50,6 +52,7 @@ class _RecommendationPanelState extends State<RecommendationPanel> {
           textAlign: TextAlign.center,
         ),
         topThreeRecommendations(),
+        const SizedBox(height: 10),
         const Divider(thickness: 2, color: constants.darkGray),
         Container(
           margin: const EdgeInsets.only(top: 30),
@@ -89,7 +92,9 @@ class _RecommendationPanelState extends State<RecommendationPanel> {
                         startActionPane: ActionPane(
                           extentRatio:0.2,
                           motion: BehindMotion(),
-                          dismissible: DismissiblePane(onDismissed: () {}),
+                          dismissible: DismissiblePane(onDismissed: () {setState(() {
+                        _recommendationCards.removeAt(index);
+                      });}),
                           children: [
                             SlidableAction(
                               onPressed: doNothing,
@@ -126,7 +131,7 @@ class _RecommendationPanelState extends State<RecommendationPanel> {
     
     Widget moreRecommendations() => ListView.builder(
           shrinkWrap: true,
-          itemCount: _recommendationCards.length > 3 ? _recommendationCards.length - 3 : 0,
+          itemCount: _recommendationCardsmore.length >= 3 ? 3 : _recommendationCardsmore.length,
           itemBuilder: (context, index){
             return 
             Align(
@@ -146,7 +151,10 @@ class _RecommendationPanelState extends State<RecommendationPanel> {
                         startActionPane: ActionPane(
                           extentRatio:0.2,
                           motion: BehindMotion(),
-                          dismissible: DismissiblePane(onDismissed: () {}),
+                          dismissible: DismissiblePane(onDismissed: () {
+                            setState(() {
+                        _recommendationCardsmore.removeAt(index);
+                      });}),
                           children: [
                             SlidableAction(
                               onPressed: doNothing,
@@ -176,7 +184,7 @@ class _RecommendationPanelState extends State<RecommendationPanel> {
                                 topLeft: Radius.circular(10),
                                 bottomLeft: Radius.circular(10),),
                               label: 'Save',),],),
-                        child: Container(height: 100, child: _recommendationCards[index+3]),
+                        child: Container(height: 100, child: _recommendationCardsmore[index]),
                         ))])));
         });
 
